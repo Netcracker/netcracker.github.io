@@ -26,7 +26,7 @@ export const NAV_LINKS = [
 // ─── Stats ───────────────────────────────────────────────────────────────────
 export const stats = [
   { value: '22+', label: 'Open Source Repositories' },
-  { value: 'v2.8.0', label: 'Latest Release' },
+  { value: 'v2.9.0', label: 'Latest Release' },
   { value: '3', label: 'API Formats: REST · GraphQL · AsyncAPI' },
   { value: 'MCP', label: 'AI & LLM Integration Ready' },
 ];
@@ -83,7 +83,7 @@ export const sectionCards = [
     href: withBase('releases/'),
     icon: '🚀',
     title: 'Releases',
-    description: 'Actively developed with releases every 4–6 weeks. See the full changelog from v2.5.x to v2.8.0.',
+    description: 'Actively developed with releases every 4–6 weeks. See the full changelog from v2.5.x to v2.9.0.',
     color: 'emerald',
   },
   {
@@ -256,9 +256,18 @@ export const scenarios = [
 // ─── Releases ─────────────────────────────────────────────────────────────────
 export const releases = [
   {
+    version: 'v2.9.0',
+    date: 'April 13, 2026',
+    latest: true,
+    highlights: [
+      'Umbrella repo README refresh — product positioning, layer table, links to Architecture landscape and Features list (wiki)',
+      'docs/README.md — structured guide index, wiki cross-links, deployment paths (Compose, Helm, local K8s quickstart), component docs table, ERD reference',
+    ],
+  },
+  {
     version: 'v2.8.0',
     date: 'April 9, 2026',
-    latest: true,
+    latest: false,
     highlights: [
       'AsyncAPI Phase 2/3 — full support: rendering, diff, global search, agent discovery',
       'GraphQL global search for operations (UI + backend)',

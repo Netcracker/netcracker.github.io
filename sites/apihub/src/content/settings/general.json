@@ -9,12 +9,12 @@
     "line2": "API Hub",
     "line3": "for Modern Engineering",
     "subtitle": "A single point of truth for API documentation. Discover, compare, validate, and govern APIs across OpenAPI, GraphQL, and AsyncAPI.",
-    "versionBadge": "v2.8.0",
-    "versionBadgeText": "Released — AsyncAPI Full Support"
+    "versionBadge": "v2.9.0",
+    "versionBadgeText": "Released — Product Docs & README Refresh"
   },
   "stats": [
     { "value": "22+", "label": "Open Source Repositories" },
-    { "value": "v2.8.0", "label": "Latest Release" },
+    { "value": "v2.9.0", "label": "Latest Release" },
     { "value": "3", "label": "API Formats: REST · GraphQL · AsyncAPI" },
     { "value": "MCP", "label": "AI & LLM Integration Ready" }
   ]
