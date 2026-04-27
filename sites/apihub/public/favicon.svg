@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0F1C36"/>
+      <stop offset="100%" style="stop-color:#1A2F54"/>
+    </linearGradient>
+    <linearGradient id="stroke-l" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#8fa8c8"/>
+      <stop offset="100%" style="stop-color:#d0dff0"/>
+    </linearGradient>
+    <linearGradient id="stroke-r" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1A2F54"/>
+      <stop offset="100%" style="stop-color:#2a4a7a"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="13" fill="url(#bg)"/>
+
+  <!-- Left leg of A (lighter / gradient silver) -->
+  <path d="M9 53 L27.5 11 L33.5 11 L17.5 53 Z" fill="url(#stroke-l)"/>
+
+  <!-- Inner negative space triangle of A -->
+  <path d="M21.5 53 L30 30 L35 40 L28.5 53 Z" fill="url(#bg)"/>
+
+  <!-- Right outer leg of A (dark navy) -->
+  <path d="M35 11 L41 11 L57 53 L51 53 Z" fill="url(#stroke-r)"/>
+
+  <!-- Right inner parallel line (the distinctive double-stroke from the logo) -->
+  <path d="M44.5 53 L55 53 L42 20 L37.5 20 Z" fill="url(#stroke-r)" opacity="0.85"/>
+
+  <!-- Crossbar notch / bottom serif shape -->
+  <rect x="20" y="42" width="8" height="3.5" rx="1" fill="url(#bg)"/>
+</svg>

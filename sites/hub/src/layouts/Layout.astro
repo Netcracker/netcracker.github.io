@@ -1,0 +1,77 @@
+---
+import { GITHUB_ORG_URL } from '../data/products';
+
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Netcracker Open Source — Qubership',
+  description =
+    'Enterprise-grade cloud platforms, integration tooling, observability, API governance and platform engineering.',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site!).href;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+    <style is:global>
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        background-color: #050813;
+        color: #f1f5f9;
+        font-family: 'Inter', system-ui, sans-serif;
+      }
+      .gradient-text {
+        background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+    </style>
+  </head>
+  <body class="antialiased min-h-screen flex flex-col">
+    <header class="border-b border-slate-800/60 backdrop-blur-xl bg-[rgba(5,8,19,0.88)] sticky top-0 z-50">
+      <nav class="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
+        <a href="/" class="font-bold text-white tracking-tight"> Netcracker <span class="gradient-text">Open Source</span> </a>
+        <a
+          href={GITHUB_ORG_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-sm text-slate-400 hover:text-white transition-colors"
+        >
+          GitHub organization
+        </a>
+      </nav>
+    </header>
+    <slot />
+    <footer class="border-t border-slate-800/60 mt-auto py-10 px-6">
+      <div class="max-w-6xl mx-auto text-center text-sm text-slate-500">
+        <p>
+          Built as a discoverable portal for the Netcracker open-source ecosystem.
+          <a href={GITHUB_ORG_URL} class="text-slate-400 hover:text-white ml-1">Netcracker on GitHub</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
