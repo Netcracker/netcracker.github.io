@@ -1,0 +1,205 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import { DOCS_URL, GITHUB_URL, ISSUES_URL, NAV_LINKS } from '../data/content';
+import { NETCRACKER_PAGES_ROOT, withBase } from '../lib/paths';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = 'Qubership Integration Platform — Visual Apache Camel Integrations',
+  description = 'Build, deploy, and observe Apache Camel integration flows with a visual low-code workspace for the web and VS Code.',
+  ogImage = 'images/hero-graph.png',
+} = Astro.props;
+
+const base = import.meta.env.BASE_URL;
+const ogImageAbsolute = ogImage.startsWith('http')
+  ? ogImage
+  : new URL(base.replace(/^\//, '') + ogImage.replace(/^\//, ''), Astro.site!).href;
+const norm = (path: string) => path.replace(/\/+$/, '') || '/';
+const currentPath = norm(Astro.url.pathname);
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageAbsolute} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href={withBase('favicon.svg')} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body class="antialiased flex min-h-screen flex-col">
+    <a href="#content" class="skip-link">Skip to content</a>
+    <header transition:persist transition:name="site-header" class="sticky top-0 z-50 border-b border-slate-800/70 backdrop-blur-xl">
+      <nav class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-5" aria-label="Primary navigation">
+        <div class="flex min-w-0 items-center gap-4">
+          <a href={NETCRACKER_PAGES_ROOT} class="hidden whitespace-nowrap text-xs font-medium text-slate-500 transition-colors hover:text-white sm:inline">All products</a>
+          <a href={base} class="flex min-w-0 flex-shrink-0 items-center gap-2.5" aria-label="Qubership Integration Platform home">
+            <svg class="h-8 w-8 text-blue-400" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <rect x="3" y="12" width="7" height="7" rx="2" fill="currentColor" />
+              <rect x="22" y="4" width="7" height="7" rx="2" fill="#9fdfd2" />
+              <rect x="22" y="21" width="7" height="7" rx="2" fill="#fff19a" />
+              <path d="M10 15.5h5.5c4 0 3.5-8 7-8M10 15.5h5.5c4 0 3.5 9 7 9" stroke="currentColor" stroke-width="2" />
+            </svg>
+            <span class="truncate text-base font-bold tracking-tight text-white">Qubership <span class="gradient-text">QIP</span></span>
+          </a>
+        </div>
+
+        <div class="hidden items-center gap-1 md:flex">
+          {NAV_LINKS.map((link) => {
+            const active = !link.external && (currentPath === norm(link.href) || currentPath.startsWith(norm(link.href) + '/'));
+            return <a href={link.href} target={link.external ? '_blank' : undefined} rel={link.external ? 'noopener' : undefined} class:list={['rounded-lg px-3 py-2 text-sm font-medium transition-colors', active ? 'bg-blue-500/15 text-blue-300' : 'text-slate-400 hover:bg-white/5 hover:text-white']}>{link.label}</a>;
+          })}
+          <a href={GITHUB_URL} target="_blank" rel="noopener" class="rounded-lg px-3 py-2 text-sm font-medium text-slate-400 transition-colors hover:bg-white/5 hover:text-white">GitHub</a>
+        </div>
+
+        <a href={GITHUB_URL} target="_blank" rel="noopener" class="btn-primary hidden rounded-lg px-4 py-2 text-sm font-semibold text-white lg:inline-flex">View on GitHub</a>
+        <button id="mobile-menu-btn" class="rounded-lg p-2 text-slate-300 hover:bg-white/5 md:hidden" type="button" aria-label="Open navigation" aria-controls="mobile-menu" aria-expanded="false">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+        </button>
+      </nav>
+      <div id="mobile-menu" class="hidden border-t border-slate-800 px-5 py-4 md:hidden">
+        {NAV_LINKS.map((link) => <a href={link.href} target={link.external ? '_blank' : undefined} rel={link.external ? 'noopener' : undefined} class="block rounded-lg px-3 py-2 text-sm text-slate-300 hover:bg-white/5">{link.label}</a>)}
+        <a href={GITHUB_URL} target="_blank" rel="noopener" class="block rounded-lg px-3 py-2 text-sm text-slate-300 hover:bg-white/5">GitHub</a>
+      </div>
+    </header>
+
+    <main id="content" class="flex-1" transition:name="page-content"><slot /></main>
+
+    <footer transition:persist transition:name="site-footer" class="mt-auto border-t border-slate-800/70 px-6 py-12">
+      <div class="mx-auto grid max-w-6xl gap-10 md:grid-cols-4">
+        <div>
+          <a href={base} class="mb-4 block text-base font-bold text-white">Qubership Integration Platform</a>
+          <p class="text-sm leading-relaxed text-slate-500">Open-source integration and orchestration on Apache Camel. Built by Netcracker.</p>
+        </div>
+        <div>
+          <h2 class="mb-4 text-xs font-semibold uppercase tracking-wider text-white">Explore</h2>
+          <ul class="space-y-2.5 text-sm text-slate-500">
+            <li><a class="hover:text-white" href={withBase('use-cases/')}>Use Cases</a></li>
+            <li><a class="hover:text-white" href={withBase('features/')}>Features</a></li>
+            <li><a class="hover:text-white" href={withBase('capabilities/')}>Capabilities</a></li>
+            <li><a class="hover:text-white" href={withBase('deploy/')}>Deploy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="mb-4 text-xs font-semibold uppercase tracking-wider text-white">Resources</h2>
+          <ul class="space-y-2.5 text-sm text-slate-500">
+            <li><a class="hover:text-white" href={DOCS_URL} target="_blank" rel="noopener">Documentation</a></li>
+            <li><a class="hover:text-white" href={`${GITHUB_URL}#getting-started`} target="_blank" rel="noopener">Getting Started</a></li>
+            <li><a class="hover:text-white" href={`${GITHUB_URL}/tree/main/vscode-extension`} target="_blank" rel="noopener">VS Code Extension</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="mb-4 text-xs font-semibold uppercase tracking-wider text-white">Community</h2>
+          <ul class="space-y-2.5 text-sm text-slate-500">
+            <li><a class="hover:text-white" href={GITHUB_URL} target="_blank" rel="noopener">GitHub</a></li>
+            <li><a class="hover:text-white" href={ISSUES_URL} target="_blank" rel="noopener">Issues</a></li>
+            <li><a class="hover:text-white" href={`${GITHUB_URL}/pulls`} target="_blank" rel="noopener">Pull Requests</a></li>
+            <li><a class="hover:text-white" href={NETCRACKER_PAGES_ROOT}>Product hub</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mx-auto mt-10 flex max-w-6xl flex-col justify-between gap-3 border-t border-slate-800/70 pt-6 text-xs text-slate-600 md:flex-row">
+        <p>© 2026 Netcracker Technology. Licensed under <a class="hover:text-slate-300" href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="noopener">Apache 2.0</a>.</p>
+        <p>Built with Astro</p>
+      </div>
+    </footer>
+
+    <div id="lightbox" class="fixed inset-0 z-[200] hidden items-center justify-center bg-black/90 p-4 backdrop-blur-md" role="dialog" aria-modal="true" aria-label="Image preview">
+      <button id="lightbox-close" type="button" class="absolute right-4 top-4 rounded-full bg-white/10 p-3 text-white hover:bg-white/20" aria-label="Close image preview">✕</button>
+      <img id="lightbox-img" src="" alt="" class="max-h-[88vh] max-w-[94vw] rounded-xl border border-white/10 object-contain shadow-2xl" />
+    </div>
+
+    <script>
+      function initInteractiveElements() {
+        const appWindow = window as Window & { __qipInteractiveController?: AbortController };
+        appWindow.__qipInteractiveController?.abort();
+        const controller = new AbortController();
+        appWindow.__qipInteractiveController = controller;
+        const listenerOptions = { signal: controller.signal };
+
+        const button = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        button?.addEventListener('click', () => {
+          const willOpen = menu?.classList.contains('hidden') ?? false;
+          menu?.classList.toggle('hidden');
+          button.setAttribute('aria-expanded', String(willOpen));
+        }, listenerOptions);
+
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightbox-img') as HTMLImageElement | null;
+        const closeButton = document.getElementById('lightbox-close');
+        let previousFocus: HTMLElement | null = null;
+        const close = () => {
+          lightbox?.classList.remove('lightbox-open');
+          document.body.style.overflow = '';
+          previousFocus?.focus();
+        };
+        document.querySelectorAll<HTMLImageElement>('[data-lightbox]').forEach((image) => {
+          image.tabIndex = 0;
+          image.setAttribute('role', 'button');
+          const open = () => {
+            if (!lightbox || !lightboxImage) return;
+            previousFocus = document.activeElement as HTMLElement;
+            lightboxImage.src = image.currentSrc || image.src;
+            lightboxImage.alt = image.alt;
+            lightbox.classList.add('lightbox-open');
+            document.body.style.overflow = 'hidden';
+            closeButton?.focus();
+          };
+          image.addEventListener('click', open, listenerOptions);
+          image.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); open(); }
+          }, listenerOptions);
+        });
+        closeButton?.addEventListener('click', close, listenerOptions);
+        lightbox?.addEventListener('click', (event) => { if (event.target === lightbox) close(); }, listenerOptions);
+        document.addEventListener('keydown', (event) => { if (event.key === 'Escape') close(); }, listenerOptions);
+      }
+      document.addEventListener('astro:page-load', initInteractiveElements);
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  :root { color-scheme: dark; }
+  html { background: #050813; }
+  body { margin: 0; overflow-x: hidden; background: #050813; color: #f1f5f9; font-family: Inter, system-ui, sans-serif; }
+  header { background: rgb(5 8 19 / 88%); }
+  ::selection { background: rgb(22 119 255 / 35%); }
+  :focus-visible { outline: 2px solid #60a5fa; outline-offset: 3px; }
+  .skip-link { position: fixed; left: 1rem; top: -4rem; z-index: 300; border-radius: .5rem; background: white; padding: .75rem 1rem; color: #050813; transition: top .15s; }
+  .skip-link:focus { top: 1rem; }
+  .gradient-text { background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .gradient-text-qip { background: linear-gradient(135deg, #9fdfd2 0%, #60a5fa 48%, #a78bfa 100%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .btn-primary { background: linear-gradient(135deg, #1677ff, #6d4aff); box-shadow: 0 10px 32px rgb(22 119 255 / 20%); transition: transform .2s, box-shadow .2s; }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 36px rgb(22 119 255 / 35%); }
+  .btn-secondary { border: 1px solid rgb(255 255 255 / 14%); background: rgb(255 255 255 / 5%); transition: background .2s, border-color .2s; }
+  .btn-secondary:hover { border-color: rgb(255 255 255 / 26%); background: rgb(255 255 255 / 8%); }
+  .page-glow { background: radial-gradient(ellipse 65% 45% at 50% -5%, rgb(22 119 255 / 20%), transparent 70%); }
+  .grid-surface { background-image: linear-gradient(rgb(255 255 255 / 2.5%) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / 2.5%) 1px, transparent 1px); background-size: 56px 56px; }
+  .glass-card { border: 1px solid rgb(51 65 85 / 70%); background: rgb(15 23 42 / 74%); box-shadow: inset 0 1px rgb(255 255 255 / 2%); }
+  .glass-card:hover { border-color: rgb(96 165 250 / 42%); }
+  [data-lightbox] { cursor: zoom-in; }
+  .lightbox-open { display: flex !important; }
+  ::view-transition-new(page-content) { animation: page-in .32s cubic-bezier(.22,1,.36,1); }
+  ::view-transition-old(page-content) { animation: page-out .16s ease-in; }
+  @keyframes page-in { from { opacity: 0; transform: translateY(12px); } }
+  @keyframes page-out { to { opacity: 0; transform: translateY(-6px); } }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  }
+</style>

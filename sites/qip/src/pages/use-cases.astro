@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { personas } from '../data/content';
+---
+
+<Layout title="QIP Use Cases — Build and Operate Integration Flows" description="See how developers, architects, platform engineers, and support teams use Qubership Integration Platform.">
+  <PageHero eyebrow="Use Cases" title="One integration model. Different outcomes." description="QIP keeps the same chain understandable from its first design decision through deployment and production support." />
+  <section class="px-6 pb-24">
+    <div class="mx-auto grid max-w-6xl gap-6 lg:grid-cols-2">
+      {personas.map((persona, index) => (
+        <article class:list={['glass-card rounded-2xl p-7 md:p-8', index === 0 && 'lg:col-span-2 lg:grid lg:grid-cols-[.7fr_1.3fr] lg:gap-12']}>
+          <div>
+            <p class="mb-3 font-mono text-xs uppercase tracking-wider text-blue-400">{persona.name}</p>
+            <h2 class="mb-4 text-2xl font-black text-white md:text-3xl">{persona.outcome}</h2>
+            <p class="leading-relaxed text-slate-400">{persona.description}</p>
+          </div>
+          <ol class:list={['mt-7 space-y-3', index === 0 && 'lg:mt-0']}>
+            {persona.steps.map((step, stepIndex) => (
+              <li class="flex items-center gap-3 rounded-xl border border-slate-800 bg-slate-950/60 px-4 py-3 text-sm text-slate-300">
+                <span class="flex h-7 w-7 flex-none items-center justify-center rounded-full bg-blue-500/15 font-mono text-xs font-bold text-blue-300">{stepIndex + 1}</span>{step}
+              </li>
+            ))}
+          </ol>
+        </article>
+      ))}
+    </div>
+  </section>
+</Layout>

@@ -41,7 +41,8 @@ export const productDomains: ProductDomain[] = [
     description:
       'Flow orchestration, runtime engine, sessions and supporting components for integration workloads.',
     topicsNote: 'qip, qubership-integration',
-    status: 'soon',
+    status: 'live',
+    landingHref: '/qip/',
     githubTopic: 'qubership-integration',
   },
   {

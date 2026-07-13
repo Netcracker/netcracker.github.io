@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { GETTING_STARTED_URL, GITHUB_URL } from '../data/content';
+---
+
+<Layout title="Deploy QIP — Local Development and Kubernetes" description="Build Qubership Integration Platform, start its Docker Compose development stack, and explore its Kubernetes deployment assets.">
+  <PageHero eyebrow="Deploy" title="Run the complete integration workspace" description="Build the monorepo, start the platform services locally, or use the supplied Helm assets for a Kubernetes environment." />
+  <section class="px-6 pb-24">
+    <div class="mx-auto max-w-5xl space-y-6">
+      <article class="glass-card rounded-2xl p-7 md:p-9">
+        <div class="mb-6 flex items-start gap-4"><span class="flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-blue-500/15 font-mono font-bold text-blue-300">1</span><div><h2 class="text-2xl font-bold text-white">Build Java modules</h2><p class="mt-2 text-sm text-slate-400">Compile the engines and backend services from the repository root.</p></div></div>
+        <pre class="overflow-x-auto rounded-xl border border-slate-800 bg-[#050813] p-5 text-sm text-slate-300"><code>mvn clean install "-Dgpg.skip=true" "-DskipTests"</code></pre>
+      </article>
+      <article class="glass-card rounded-2xl p-7 md:p-9">
+        <div class="mb-6 flex items-start gap-4"><span class="flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-violet-500/15 font-mono font-bold text-violet-300">2</span><div><h2 class="text-2xl font-bold text-white">Build schemas and UI</h2><p class="mt-2 text-sm text-slate-400">Install workspace dependencies, resolve schema references, and build the visual application.</p></div></div>
+        <pre class="overflow-x-auto rounded-xl border border-slate-800 bg-[#050813] p-5 text-sm leading-7 text-slate-300"><code>npm install
+npm -w @netcracker/qip-schemas run build
+npm -w @netcracker/qip-ui run build</code></pre>
+      </article>
+      <article class="glass-card rounded-2xl p-7 md:p-9">
+        <div class="mb-6 flex items-start gap-4"><span class="flex h-10 w-10 flex-none items-center justify-center rounded-xl bg-emerald-500/15 font-mono font-bold text-emerald-300">3</span><div><h2 class="text-2xl font-bold text-white">Start the local stack</h2><p class="mt-2 text-sm text-slate-400">Docker Compose starts the application services with PostgreSQL, Consul, OpenSearch, and the Nginx proxy.</p></div></div>
+        <pre class="overflow-x-auto rounded-xl border border-slate-800 bg-[#050813] p-5 text-sm text-slate-300"><code>docker compose -f infrastructure/docker-compose.yml up -d --build</code></pre>
+        <p class="mt-5 text-sm leading-relaxed text-slate-500">Optional Compose overlays add Kafka, RabbitMQ, Redis, or Google Pub/Sub when a chain needs those systems.</p>
+      </article>
+      <div class="grid gap-6 md:grid-cols-2">
+        <article class="glass-card rounded-2xl p-7"><p class="mb-3 font-mono text-xs text-blue-400">Kubernetes</p><h2 class="mb-3 text-xl font-bold text-white">Deploy with Helm assets</h2><p class="mb-5 text-sm leading-relaxed text-slate-400">The infrastructure module contains Helm charts and routing configuration for a Kubernetes deployment. Follow the repository documentation for the target environment.</p><a class="text-sm font-semibold text-blue-400 hover:text-blue-300" href={`${GITHUB_URL}/tree/main/infrastructure`} target="_blank" rel="noopener">Explore infrastructure →</a></article>
+        <article class="glass-card rounded-2xl p-7"><p class="mb-3 font-mono text-xs text-blue-400">Development</p><h2 class="mb-3 text-xl font-bold text-white">Run the UI with hot reload</h2><pre class="mb-5 overflow-x-auto rounded-xl border border-slate-800 bg-[#050813] p-4 text-xs text-slate-300"><code>npm -w @netcracker/qip-ui run dev</code></pre><p class="text-sm leading-relaxed text-slate-400">Use the Vite development server while the backend stack runs through Docker Compose.</p></article>
+      </div>
+      <div class="pt-5 text-center"><a href={GETTING_STARTED_URL} target="_blank" rel="noopener" class="btn-primary inline-flex rounded-xl px-7 py-3.5 text-sm font-bold text-white">Open the complete Getting Started guide</a></div>
+    </div>
+  </section>
+</Layout>
