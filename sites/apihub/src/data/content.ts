@@ -25,9 +25,9 @@ export const NAV_LINKS = [
 
 // ─── Stats ───────────────────────────────────────────────────────────────────
 export const stats = [
-  { value: '22+', label: 'Open Source Repositories' },
-  { value: 'v2.9.0', label: 'Latest Release' },
-  { value: '3', label: 'API Formats: REST · GraphQL · AsyncAPI' },
+  { value: '27+', label: 'Open Source Repositories' },
+  { value: 'v2.12.0', label: 'Latest Release' },
+  { value: '4', label: 'API Formats: REST · GraphQL · AsyncAPI · DDL' },
   { value: 'MCP', label: 'AI & LLM Integration Ready' },
 ];
 
@@ -83,7 +83,7 @@ export const sectionCards = [
     href: withBase('releases/'),
     icon: '🚀',
     title: 'Releases',
-    description: 'Actively developed with releases every 4–6 weeks. See the full changelog from v2.5.x to v2.9.0.',
+    description: 'Actively developed with releases every 4–6 weeks. See the full changelog from v2.5.x to v2.12.0.',
     color: 'emerald',
   },
   {
