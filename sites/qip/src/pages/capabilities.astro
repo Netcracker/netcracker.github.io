@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { capabilityGroups } from '../data/content';
+---
+
+<Layout title="QIP Capabilities — Apache Camel Integration Platform" description="Explore QIP capabilities across integration design, connectivity, orchestration, runtime, observability, and developer tooling.">
+  <PageHero eyebrow="Capabilities" title="The integration lifecycle in one platform" description="Model the flow, connect systems, transform messages, run on Camel, and keep the execution evidence close to the design." />
+  <section class="px-6 pb-24">
+    <div class="mx-auto grid max-w-6xl gap-6 md:grid-cols-2 xl:grid-cols-3">
+      {capabilityGroups.map((group, index) => (
+        <article id={group.id} class="glass-card scroll-mt-24 rounded-2xl p-7">
+          <div class:list={['mb-6 h-1.5 w-16 rounded-full', index % 3 === 0 ? 'bg-[#9fdfd2]' : index % 3 === 1 ? 'bg-[#fff19a]' : 'bg-blue-400']}></div>
+          <h2 class="mb-5 text-xl font-bold text-white">{group.title}</h2>
+          <ul class="space-y-3">
+            {group.items.map((item) => <li class="flex gap-3 text-sm leading-relaxed text-slate-400"><span class="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-blue-400"></span>{item}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </section>
+</Layout>

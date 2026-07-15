@@ -8,6 +8,7 @@ Monorepo for the [Netcracker organization GitHub Pages](https://netcracker.githu
 |------|-------------|
 | `sites/hub/` | Root landing (Astro) — domain cards and navigation |
 | `sites/apihub/` | Qubership APIHUB product landing (Astro), built with `base: /apihub` |
+| `sites/qip/` | Qubership Integration Platform landing (Astro), built with `base: /qip` |
 
 ## Local development
 
@@ -17,11 +18,14 @@ cd sites/hub && npm install && npm run dev
 
 cd sites/apihub && npm install && npm run dev
 # http://localhost:4321 — served under /apihub/
+
+cd sites/qip && npm install && npm run dev
+# http://localhost:4321 — served under /qip/
 ```
 
 ## Production build (same as CI)
 
-From each site directory: `npm ci && npm run build`. CI merges `sites/hub/dist/` into the publish root and `sites/apihub/dist/` into `apihub/`, adds `.nojekyll`, and deploys via GitHub Actions.
+From each site directory: `npm ci && npm run build`. CI merges `sites/hub/dist/` into the publish root, `sites/apihub/dist/` into `apihub/`, and `sites/qip/dist/` into `qip/`, adds `.nojekyll`, and deploys via GitHub Actions.
 
 ## GitHub Pages setup (required)
 
