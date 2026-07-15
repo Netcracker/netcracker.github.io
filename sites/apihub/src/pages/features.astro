@@ -7,7 +7,7 @@ const home = import.meta.env.BASE_URL;
 
 <Layout
   title="Features — Qubership APIHUB"
-  description="Interactive feature showcase: API discovery, breaking change detection, quality gates, Kubernetes discovery, AsyncAPI support and more."
+  description="Interactive feature showcase: contract catalog, breaking change detection, quality gates, Kubernetes discovery, DDLAPI and MCP support, and more."
 >
   <!-- Page Hero -->
   <section class="relative pt-16 pb-12 px-6 overflow-hidden">
@@ -24,24 +24,25 @@ const home = import.meta.env.BASE_URL;
       <p class="text-sm font-semibold text-violet-400 uppercase tracking-widest mb-3">Capabilities deep-dive</p>
       <h1 class="text-4xl md:text-5xl font-black text-white mb-5">
         Everything you need<br />
-        <span style="background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">to master your APIs</span>
+        <span style="background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">to master your contracts</span>
       </h1>
       <p class="text-lg text-slate-400 max-w-2xl mx-auto">
-        From discovery to governance — explore each APIHUB capability with screenshots and detailed descriptions.
+        APIHUB catalogs machine-readable <strong class="text-slate-300">contracts</strong> — REST and GraphQL APIs, event APIs, database schemas (DDLAPI), and MCP tool surfaces — with shared versioning, diff, and governance.
       </p>
     </div>
   </section>
 
-  <!-- API Types Support Matrix -->
+  <!-- Contracts & API Types Support Matrix -->
   <section class="py-20 px-6 border-t border-slate-800/50" style="background: rgba(15,23,42,0.4);">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-10">
-        <p class="text-sm font-semibold text-violet-400 uppercase tracking-widest mb-3">Multi-format support</p>
+        <p class="text-sm font-semibold text-violet-400 uppercase tracking-widest mb-3">Contract catalog</p>
         <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-          Supported API Types
+          Supported Contracts &amp; API Types
         </h2>
-        <p class="text-slate-400 max-w-xl mx-auto">
-          Every layer of the platform — from discovery agents to the diff engine — has explicit support per API format.
+        <p class="text-slate-400 max-w-2xl mx-auto">
+          Classic <strong class="text-slate-300">API types</strong> (REST, GraphQL, AsyncAPI) remain first-class for operations.
+          Newer <strong class="text-slate-300">contract types</strong> — <strong class="text-slate-300">DDLAPI</strong> and <strong class="text-slate-300">MCP</strong> — publish, version, and browse alongside them in the same package model.
         </p>
       </div>
 
@@ -51,7 +52,7 @@ const home = import.meta.env.BASE_URL;
           <table class="w-full text-sm border-collapse min-w-[860px]">
             <thead>
               <tr style="background: linear-gradient(90deg, rgba(59,130,246,0.15), rgba(124,58,237,0.15));">
-                <th class="text-left px-5 py-3.5 font-semibold text-white border-b border-slate-700 whitespace-nowrap">API Type</th>
+                <th class="text-left px-5 py-3.5 font-semibold text-white border-b border-slate-700 whitespace-nowrap">Contract / API Type</th>
                 <th class="text-center px-3 py-3.5 font-semibold text-slate-300 border-b border-slate-700 whitespace-nowrap">Backend</th>
                 <th class="text-center px-3 py-3.5 font-semibold text-slate-300 border-b border-slate-700 whitespace-nowrap">Build</th>
                 <th class="text-center px-3 py-3.5 font-semibold text-slate-300 border-b border-slate-700 whitespace-nowrap">K8s Discovery</th>
@@ -65,7 +66,7 @@ const home = import.meta.env.BASE_URL;
               {[
                 {
                   type: 'OpenAPI 3.0 / 3.1',
-                  badge: { label: 'REST', color: 'bg-green-500/15 text-green-400' },
+                  badge: { label: 'API', color: 'bg-green-500/15 text-green-400' },
                   backend: { v: 'yes' },
                   build:   { v: 'yes' },
                   disco:   { v: 'yes' },
@@ -76,7 +77,7 @@ const home = import.meta.env.BASE_URL;
                 },
                 {
                   type: 'Swagger 2.0',
-                  badge: { label: 'REST', color: 'bg-green-500/15 text-green-400' },
+                  badge: { label: 'API', color: 'bg-green-500/15 text-green-400' },
                   backend: { v: 'yes', note: 'via conv.' },
                   build:   { v: 'yes', note: '→ OAS3' },
                   disco:   { v: 'yes' },
@@ -87,18 +88,18 @@ const home = import.meta.env.BASE_URL;
                 },
                 {
                   type: 'GraphQL',
-                  badge: { label: 'GraphQL', color: 'bg-pink-500/15 text-pink-400' },
+                  badge: { label: 'API', color: 'bg-pink-500/15 text-pink-400' },
                   backend: { v: 'yes' },
                   build:   { v: 'yes' },
                   disco:   { v: 'yes', note: 'introspect' },
                   ui:      { v: 'yes' },
                   diff:    { v: 'yes' },
                   viewer:  { v: 'yes' },
-                  linter:  { v: 'no' },
+                  linter:  { v: 'yes', note: 'Spectral' },
                 },
                 {
                   type: 'AsyncAPI 3.0',
-                  badge: { label: 'AsyncAPI', color: 'bg-orange-500/15 text-orange-400' },
+                  badge: { label: 'API', color: 'bg-orange-500/15 text-orange-400' },
                   backend: { v: 'yes' },
                   build:   { v: 'yes' },
                   disco:   { v: 'yes' },
@@ -108,8 +109,30 @@ const home = import.meta.env.BASE_URL;
                   linter:  { v: 'yes', note: 'Spectral' },
                 },
                 {
+                  type: 'DDLAPI (DB schemas)',
+                  badge: { label: 'Contract', color: 'bg-cyan-500/15 text-cyan-400' },
+                  backend: { v: 'yes', note: 'contracts' },
+                  build:   { v: 'yes', note: 'ddlBuilder' },
+                  disco:   { v: 'no' },
+                  ui:      { v: 'partial', note: 'Contracts tab' },
+                  diff:    { v: 'yes', note: 'ddlapi-1.0' },
+                  viewer:  { v: 'yes', note: 'tables' },
+                  linter:  { v: 'no' },
+                },
+                {
+                  type: 'MCP contracts',
+                  badge: { label: 'Contract', color: 'bg-emerald-500/15 text-emerald-400' },
+                  backend: { v: 'yes', note: 'contracts' },
+                  build:   { v: 'yes', note: 'mcpBuilder' },
+                  disco:   { v: 'no' },
+                  ui:      { v: 'yes', note: 'Contracts tab' },
+                  diff:    { v: 'no' },
+                  viewer:  { v: 'partial', note: 'raw / tools' },
+                  linter:  { v: 'no' },
+                },
+                {
                   type: 'Protobuf / gRPC',
-                  badge: { label: 'Proto', color: 'bg-slate-500/15 text-slate-400' },
+                  badge: { label: 'Stub', color: 'bg-slate-500/15 text-slate-400' },
                   backend: { v: 'yes' },
                   build:   { v: 'yes' },
                   disco:   { v: 'no' },
@@ -124,21 +147,10 @@ const home = import.meta.env.BASE_URL;
                   backend: { v: 'partial', note: 'storage' },
                   build:   { v: 'yes' },
                   disco:   { v: 'yes' },
-                  ui:      { v: 'yes', note: 'viewer' },
+                  ui:      { v: 'yes', note: '+ Mermaid' },
                   diff:    { v: 'no' },
                   viewer:  { v: 'yes' },
                   linter:  { v: 'no' },
-                },
-                {
-                  type: 'MCP (future)',
-                  badge: { label: 'AI', color: 'bg-blue-500/15 text-blue-400' },
-                  backend: { v: 'planned' },
-                  build:   { v: 'planned' },
-                  disco:   { v: 'planned' },
-                  ui:      { v: 'planned' },
-                  diff:    { v: 'planned' },
-                  viewer:  { v: 'planned' },
-                  linter:  { v: 'planned' },
                 },
               ].map((row, i) => (
                 <tr class={i % 2 === 0 ? 'bg-slate-900/30' : 'bg-slate-900/60'}>
@@ -181,9 +193,13 @@ const home = import.meta.env.BASE_URL;
           <span><span class="text-emerald-400">✓</span> Supported</span>
           <span><span class="text-yellow-400">◑</span> Partial</span>
           <span><span class="text-slate-600">—</span> Not applicable</span>
-          <span><span class="italic">planned</span> On the roadmap</span>
+          <span class="text-slate-400">Badges: <span class="text-slate-300">API</span> = operation API type · <span class="text-slate-300">Contract</span> = catalog contract type</span>
         </div>
       </div>
+      <p class="mt-6 text-sm text-slate-500 max-w-3xl mx-auto text-center">
+        <strong class="text-slate-400">MCP server</strong> (tools for agents/IDEs at <code class="text-slate-400">/api/v1/mcp/</code>) is separate from
+        <strong class="text-slate-400">MCP contracts</strong> stored in the catalog. Both ship in current releases.
+      </p>
     </div>
   </section>
 

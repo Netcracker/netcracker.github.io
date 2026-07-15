@@ -1,6 +1,6 @@
 {
   "siteTitle": "Qubership APIHUB",
-  "siteDescription": "A single point of truth for API documentation. Discover, compare, validate, and govern your APIs across OpenAPI, GraphQL, and AsyncAPI.",
+  "siteDescription": "A single point of truth for versioned API and non-API contracts. Discover, compare, validate, and govern OpenAPI, GraphQL, AsyncAPI, DDLAPI, and MCP in one catalog.",
   "githubUrl": "https://github.com/Netcracker/qubership-apihub",
   "docsUrl": "https://github.com/Netcracker/qubership-apihub/blob/main/docs/user-guide.md",
   "installUrl": "https://github.com/Netcracker/qubership-apihub/blob/main/docs/installation-guide.md",
@@ -8,14 +8,14 @@
     "line1": "The Open Source",
     "line2": "API Hub",
     "line3": "for Modern Engineering",
-    "subtitle": "A single point of truth for API documentation. Discover, compare, validate, and govern APIs across OpenAPI, GraphQL, and AsyncAPI.",
-    "versionBadge": "v2.9.0",
-    "versionBadgeText": "Released — Product Docs & README Refresh"
+    "subtitle": "A single point of truth for versioned API and non-API contracts. Discover, compare, validate, and govern OpenAPI, GraphQL, AsyncAPI, DDLAPI, and MCP in one catalog.",
+    "versionBadge": "v2.12.0",
+    "versionBadgeText": "Released — MCP & DDL Contracts + AsyncAPI Diff View"
   },
   "stats": [
-    { "value": "22+", "label": "Open Source Repositories" },
-    { "value": "v2.9.0", "label": "Latest Release" },
-    { "value": "3", "label": "API Formats: REST · GraphQL · AsyncAPI" },
-    { "value": "MCP", "label": "AI & LLM Integration Ready" }
+    { "value": "27+", "label": "Open Source Repositories" },
+    { "value": "v2.12.0", "label": "Latest Release" },
+    { "value": "Contracts", "label": "API Types + DDLAPI + MCP" },
+    { "value": "MCP", "label": "Server + Catalog Contracts" }
   ]
 }

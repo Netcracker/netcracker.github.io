@@ -27,30 +27,30 @@ export const NAV_LINKS = [
 export const stats = [
   { value: '27+', label: 'Open Source Repositories' },
   { value: 'v2.12.0', label: 'Latest Release' },
-  { value: '4', label: 'API Formats: REST · GraphQL · AsyncAPI · DDL' },
-  { value: 'MCP', label: 'AI & LLM Integration Ready' },
+  { value: 'Contracts', label: 'API Types + DDLAPI + MCP' },
+  { value: 'MCP', label: 'Server + Catalog Contracts' },
 ];
 
 // ─── Pillars ─────────────────────────────────────────────────────────────────
 export const pillars = [
   {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" /></svg>`,
-    title: 'Single Source of Truth',
-    description: 'Organize all your APIs in a unified catalog — workspaces, groups, packages, and versioned releases. Every team member knows exactly where to find the authoritative API contract.',
+    title: 'Unified Contract Catalog',
+    description: 'Version REST, GraphQL, AsyncAPI, database schemas (DDLAPI), and MCP tool surfaces in one hierarchy — workspaces, groups, packages, and releases. One place for every machine-readable contract.',
     color: 'blue',
     href: withBase('capabilities/'),
   },
   {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" /></svg>`,
     title: 'Automated Compatibility Checks',
-    description: 'Know exactly what breaks before it reaches production. The diff engine classifies every API change as Breaking, Semi-Breaking, Deprecated, or Non-Breaking — with human-readable descriptions.',
+    description: 'Know exactly what breaks before it reaches production. The diff engine classifies changes as Breaking, Semi-Breaking, Deprecated, or Non-Breaking — for REST, GraphQL, AsyncAPI, and DDLAPI.',
     color: 'violet',
     href: withBase('features/'),
   },
   {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7"><path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.563.563 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" /></svg>`,
     title: 'Quality & Governance at Scale',
-    description: 'Enforce API standards with Spectral linting, AI-powered recommendations, and configurable rulesets per API type. Inline spec highlighting and multi-linter results in one unified dashboard.',
+    description: 'Enforce standards with Spectral linting, AI-powered recommendations, and configurable rulesets. Inline highlighting and multi-linter results in one dashboard.',
     color: 'indigo',
     href: withBase('capabilities/'),
   },
@@ -76,7 +76,7 @@ export const sectionCards = [
     href: withBase('capabilities/'),
     icon: '📦',
     title: 'All Capabilities',
-    description: 'Complete feature matrix organized by domain — catalog, security, AI, export, and more.',
+    description: 'Complete feature matrix — API types, contract types (DDL & MCP), security, AI, export, and more.',
     color: 'indigo',
   },
   {
@@ -105,9 +105,9 @@ export const features = [
     description: 'Powerful global search across all operations, documents, and packages. Navigate the full hierarchy — workspace → group → package → version — with rich filters.',
     bullets: [
       'Search across REST operations, GraphQL queries, and AsyncAPI channels',
+      'Browse DDLAPI and MCP contracts in the same package hierarchy',
       'Deep-link directly into the doc view or package summary',
       'Filter by audience, tags, API kind, and deprecation status',
-      'Full-text search with 70-char snippets around matching content',
     ],
     image: null,
     image2: null,
@@ -119,10 +119,10 @@ export const features = [
     tab: 'Breaking Changes',
     icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" /></svg>`,
     title: 'Detect Breaking Changes Automatically',
-    description: 'Version-to-version and operation-level diffs with automated classification. Compare versions, revisions, or REST path groups — with export to Excel for compliance.',
+    description: 'Version-to-version and operation-level diffs with automated classification. Compare versions, revisions, or REST path groups — including AsyncAPI and DDLAPI — with export to Excel for compliance.',
     bullets: [
       'Breaking / Semi-Breaking / Deprecated / Non-Breaking / Annotation severity',
-      'Compare any two versions or revisions across REST and GraphQL',
+      'Compare versions or revisions across REST, GraphQL, AsyncAPI, and DDLAPI',
       'Path-prefix group comparison for domain-scoped analysis',
       'Export change lists to Excel for audit and compliance workflows',
     ],
@@ -191,12 +191,29 @@ export const features = [
     bullets: [
       'AsyncAPI 3.0 operation rendering with SEND/RECEIVE semantics',
       'Kafka, AMQP bindings at operation, channel, and message level',
-      'Breaking change detection and classification for event APIs',
+      'Breaking change detection, classification, and Diff View in Doc Viewer',
       'Agent-based discovery of AsyncAPI services in Kubernetes clusters',
     ],
     image: 'https://github.com/user-attachments/assets/475d3256-8da5-4420-981d-65dcecccd579',
     image2: null,
     alt: 'AsyncAPI DocView showing SEND/RECEIVE operations with channel and binding details',
+    mockup: null,
+  },
+  {
+    id: 'contracts',
+    tab: 'Contracts',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>`,
+    title: 'Beyond API Types: Catalog Contracts',
+    description: 'APIHUB is no longer limited to operation-centric API types. Publish DDLAPI database schemas and MCP tool/resource/prompt documents as first-class contracts in the same package versions — with dedicated Portal Contracts UX.',
+    bullets: [
+      'DDLAPI: normalize, diff, and render database schemas (table viewer)',
+      'MCP contracts: version init, tools, resources, and prompts in the catalog',
+      'Shared build pipeline via ddlBuilder / mcpBuilder in api-processor',
+      'MCP server for IDEs remains separate — it queries the catalog, it is not the contract type',
+    ],
+    image: withBase('images/feature-ai-mcp.png'),
+    image2: null,
+    alt: 'Contract types — DDLAPI and MCP alongside classic API types',
     mockup: null,
   },
 ];
@@ -244,24 +261,61 @@ export const scenarios = [
     color: 'cyan',
   },
   {
+    persona: 'Data / Platform Architect',
+    icon: '🗄️',
+    title: 'Version database schemas next to APIs',
+    steps: ['Publish DDLAPI', 'Review table viewer', 'Diff schema versions', 'Share with teams'],
+    value: 'DB contracts live in the same catalog as service APIs — one release story for app and data.',
+    color: 'indigo',
+  },
+  {
     persona: 'AI / LLM Developer',
     icon: '🤖',
-    title: 'Give AI agents real API knowledge',
-    steps: ['Configure MCP client', 'Connect to APIHUB', 'AI searches ops', 'AI fetches specs', 'AI generates code'],
-    value: 'LLMs work with your real, current API catalog — not hallucinated or outdated specs.',
+    title: 'Give AI agents real contract knowledge',
+    steps: ['Connect MCP client', 'Search catalog', 'Fetch specs & diffs', 'Publish MCP contracts', 'Generate code'],
+    value: 'Use the MCP server for live catalog access, and store your own MCP surfaces as versioned contracts.',
     color: 'pink',
   },
 ];
 
-// ─── Releases ─────────────────────────────────────────────────────────────────
+// ─── Releases (legacy fallback; Releases page uses content/releases/*.md) ─────
 export const releases = [
   {
-    version: 'v2.9.0',
-    date: 'April 13, 2026',
+    version: 'v2.12.0',
+    date: 'July 15, 2026',
     latest: true,
     highlights: [
-      'Umbrella repo README refresh — product positioning, layer table, links to Architecture landscape and Features list (wiki)',
-      'docs/README.md — structured guide index, wiki cross-links, deployment paths (Compose, Helm, local K8s quickstart), component docs table, ERD reference',
+      'MCP & DDL catalog contracts in UI',
+      'DDL table viewer and AsyncAPI Diff View',
+      'Mermaid in Markdown docs; custom CA mounts',
+    ],
+  },
+  {
+    version: 'v2.11.0',
+    date: 'June 1, 2026',
+    latest: false,
+    highlights: [
+      'Honey AI Assistant productized',
+      'AsyncAPI Quality Check in Portal',
+      'Node.js 24 LTS for frontend libraries',
+    ],
+  },
+  {
+    version: 'v2.10.0',
+    date: 'May 12, 2026',
+    latest: false,
+    highlights: [
+      'AsyncAPI Operation Groups end-to-end',
+      'Hardened nginx timeouts',
+    ],
+  },
+  {
+    version: 'v2.9.0',
+    date: 'April 26, 2026',
+    latest: false,
+    highlights: [
+      'Document shareability & AsyncAPI change classification',
+      'MCP tools / AI chat metrics',
     ],
   },
   {
@@ -269,43 +323,8 @@ export const releases = [
     date: 'April 9, 2026',
     latest: false,
     highlights: [
-      'AsyncAPI Phase 2/3 — full support: rendering, diff, global search, agent discovery',
-      'GraphQL global search for operations (UI + backend)',
-      'REST & GraphQL Quality Gates — Spectral linting fully enabled',
-      'TypeScript 7.0 upgrade for frontend components',
-      'Sharable/Non-sharable meta-marker for document export control',
-    ],
-  },
-  {
-    version: 'v2.7.0',
-    date: 'March 24, 2026',
-    latest: false,
-    highlights: [
-      'MCP Tool for API Changes: new get_rest_api_operation_diff MCP tool',
-      'GraphQL Bulk Mode in Breaking Changes Dashboard with CSV import/export',
-      'AI Linter productization: multiple linters per API type',
-      'AsyncAPI Quality Check backend support',
-    ],
-  },
-  {
-    version: 'v2.6.0',
-    date: 'February 6, 2026',
-    latest: false,
-    highlights: [
-      'AsyncAPI initial backend support',
-      'OAS 3.0/3.1 cross-version comparison improvements',
-      'Common Go library for API spec exposure',
-      'Runtime log level management across all services',
-    ],
-  },
-  {
-    version: 'v2.5.2',
-    date: 'December 16, 2025',
-    latest: false,
-    highlights: [
-      'MCP Server PoC — first MCP server + AI chat integration',
-      'LLM onboarding to APIHUB for API quality measurement',
-      'OAS 3.1 pathItem refs support in REST Playground',
+      'AsyncAPI Phase 2/3 — full support across the stack',
+      'REST & GraphQL Quality Gates',
     ],
   },
 ];
@@ -316,10 +335,11 @@ export const formats = [
   { name: 'Swagger 2.0', color: '#85E89D' },
   { name: 'GraphQL', color: '#E535AB' },
   { name: 'AsyncAPI 3.0', color: '#F7A541' },
+  { name: 'DDLAPI', color: '#22D3EE' },
+  { name: 'MCP Contracts', color: '#34D399' },
   { name: 'JSON Schema', color: '#60A5FA' },
   { name: 'Protobuf / gRPC', color: '#A78BFA' },
   { name: 'Markdown Docs', color: '#94A3B8' },
-  { name: 'MCP (AI)', color: '#34D399' },
 ];
 
 // ─── Deploy options ───────────────────────────────────────────────────────────
@@ -345,7 +365,7 @@ export const deployOptions = [
   {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" /></svg>`,
     title: 'Build from Source',
-    description: 'All 22 repositories are open source under Apache 2.0. Build any component, run the full test suite, and contribute back to the project.',
+    description: 'All 27+ repositories are open source under Apache 2.0. Build any component, run the full test suite, and contribute back to the project.',
     badge: 'Open source',
     cta: 'View on GitHub',
     href: GITHUB_URL,
