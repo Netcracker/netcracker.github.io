@@ -12,12 +12,13 @@ const domains = [
     items: [
       'Multi-level hierarchy: workspace → group → package → version',
       'Draft → Release → Archived version lifecycle',
-      'OpenAPI 2.0/3.0/3.1, GraphQL SDL, AsyncAPI 3.0, JSON Schema',
+      'API types: OpenAPI 2.0/3.x, GraphQL SDL, AsyncAPI 3.0, JSON Schema',
+      'Contract types: DDLAPI (database schemas) and MCP (tools/resources/prompts)',
       'Full-text global search across operations, docs, and packages',
       'Tags, audiences, labels, custom metadata per package',
       'Package dashboard with stats, latest changes, and linter results',
-      'Integrated REST, GraphQL, and AsyncAPI documentation rendering',
-      'Deep-link to any operation, schema, or channel',
+      'Integrated REST, GraphQL, AsyncAPI, and DDL schema documentation rendering',
+      'Deep-link to any operation, schema, channel, or contract document',
     ],
   },
   {
@@ -25,14 +26,14 @@ const domains = [
     icon: '⚖️',
     color: 'violet',
     items: [
-      'Version-to-version diff for REST and GraphQL',
-      'Operation-level comparison: request/response/parameter',
+      'Version-to-version diff for REST, GraphQL, AsyncAPI, and DDLAPI',
+      'Operation-level comparison: request/response/parameter / messages',
       'Severity classification: Breaking / Semi-Breaking / Deprecated / Non-Breaking',
       'Path-prefix group comparison for domain scope',
       'GraphQL bulk-mode with CSV import of operation lists',
       'Breaking changes dashboard (unified view across all packages)',
       'Excel export for compliance and audit workflows',
-      'REST and GraphQL change history tracking',
+      'AsyncAPI Diff View in the Doc Viewer',
     ],
   },
   {
@@ -66,17 +67,30 @@ const domains = [
     ],
   },
   {
-    name: 'MCP & AI Integration',
+    name: 'Contract Types (DDL & MCP)',
+    icon: '📦',
+    color: 'indigo',
+    items: [
+      'Catalog model broadened from API-operation types to versioned contracts',
+      'DDLAPI: publish and browse database schema contracts with table viewer',
+      'DDLAPI normalization and diff in the TS processing stack (ddlapi-1.0)',
+      'MCP contracts: store init / tools / resources / prompts as package documents',
+      'Portal Contracts tab for MCP and DDL alongside classic API types',
+      'Shared package/version lifecycle for APIs and non-API contracts',
+    ],
+  },
+  {
+    name: 'MCP Server & AI Integration',
     icon: '🤖',
     color: 'pink',
     items: [
-      'MCP (Model Context Protocol) server built-in',
-      'Tools: search_api_operations, get_api_operation_details, get_rest_api_operation_diff',
+      'Built-in MCP server for agents and IDEs (separate from MCP catalog contracts)',
+      'Tools: search operations, fetch specs, operation diffs, linter results',
       'Compatible with Claude Desktop, VS Code Copilot, Cursor, and any MCP client',
+      'Honey AI Assistant in the Portal (optional; ai.chat.enabled)',
       'AI-powered linting with OpenAI quality recommendations',
-      'Context-aware code generation with real API specs',
       'Rate-limiting and configurable API key management',
-      'Streaming and batch MCP response modes',
+      'Streaming MCP response modes',
       'LLM onboarding guide included',
     ],
   },
@@ -92,7 +106,7 @@ const domains = [
       'Audit logging for all content changes',
       'Service account support for automation pipelines',
       'Secure agent communication (token-based auth)',
-      'HTTPS termination and configurable CORS',
+      'HTTPS termination, configurable CORS, optional custom CA mounts',
     ],
   },
   {
@@ -103,11 +117,11 @@ const domains = [
       'Spec-driven REST Playground (try APIs in-portal)',
       'Multiple server support with custom URL override',
       'Agent Proxy for in-cluster API testing',
-      'VS Code Extension for local spec linting and upload',
+      'Mermaid diagrams in Markdown documents',
       'CI/CD publish integration (curl, npm client, GitHub Actions)',
       'Developer portal with role-based visibility',
       'Export portal as static snapshot (self-contained HTML)',
-      'Embed public portal for external API consumers',
+      'Standalone API Diff CLI with local MCP support',
     ],
   },
   {
@@ -141,7 +155,7 @@ const colorBg: Record<string, string> = {
 
 <Layout
   title="Capabilities — Qubership APIHUB"
-  description="Complete feature matrix for Qubership APIHUB — API catalog, quality gates, Kubernetes discovery, MCP/AI integration, security, and deployment."
+  description="Complete feature matrix for Qubership APIHUB — contract catalog (API types + DDLAPI + MCP), quality gates, Kubernetes discovery, AI integration, security, and deployment."
 >
   <!-- Page Hero -->
   <section class="relative pt-16 pb-12 px-6 overflow-hidden">
