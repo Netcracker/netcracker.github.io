@@ -7,7 +7,7 @@ const home = import.meta.env.BASE_URL;
 
 const rawReleases = await getCollection('releases');
 const releases = rawReleases
-  .sort((a, b) => b.data.version.localeCompare(a.data.version))
+  .sort((a, b) => b.data.version.localeCompare(a.data.version, undefined, { numeric: true }))
   .map((r) => ({ ...r.data, slug: r.slug }));
 ---
 

@@ -1,14 +1,14 @@
 ---
 persona: "AI / LLM Developer"
 icon: "🤖"
-title: "Give AI agents real API knowledge"
+title: "Give AI agents real contract knowledge"
 steps:
-  - "Configure MCP client"
-  - "Connect to APIHUB"
-  - "AI searches ops"
-  - "AI fetches specs"
-  - "AI generates code"
-value: "LLMs work with your real, current API catalog — not hallucinated or outdated specs."
+  - "Connect MCP client"
+  - "Search catalog"
+  - "Fetch specs and diffs"
+  - "Publish MCP contracts"
+  - "Generate code"
+value: "Use the MCP server for live catalog access, and store your own MCP surfaces as versioned contracts."
 color: "pink"
-order: 6
+order: 7
 ---

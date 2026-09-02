@@ -4,7 +4,7 @@ icon: "☸️"
 title: "Always-current API inventory from K8s"
 steps:
   - "Deploy agent"
-  - "Auto-discover services"
+  - "Scope services or namespaces"
   - "Snapshot specs"
   - "Review in UI"
   - "Promote to catalog"
