@@ -82,11 +82,11 @@ import { withBase } from '../lib/paths';
     </div>
   </section>
 
-  <!-- ── Why APIHUB ─────────────────────────────────────────────────────── -->
+  <!-- ── What you get ───────────────────────────────────────────────────── -->
   <section class="py-24 px-6">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-14">
-        <p class="text-sm font-semibold text-blue-400 uppercase tracking-widest mb-3">Why Qubership APIHUB?</p>
+        <p class="text-sm font-semibold text-blue-400 uppercase tracking-widest mb-3">What you get</p>
         <h2 class="text-4xl md:text-5xl font-black text-white mb-5">
           The only unified platform<br />
           <span class="gradient-text">for all your API needs</span>
@@ -116,6 +116,49 @@ import { withBase } from '../lib/paths';
           </a>
         ))}
       </div>
+    </div>
+  </section>
+
+  <!-- ── Why APIHUB teaser ──────────────────────────────────────────────── -->
+  <section class="pb-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <a
+        href={withBase('why/')}
+        class="group block rounded-3xl border border-slate-800 hover:border-blue-500/50 transition-all duration-300 overflow-hidden"
+        style="background: linear-gradient(135deg, rgba(59,130,246,0.10) 0%, rgba(15,23,42,0.6) 45%, rgba(124,58,237,0.10) 100%);"
+      >
+        <div class="grid lg:grid-cols-[1.15fr_1fr] gap-8 items-center p-8 md:p-10">
+          <div>
+            <p class="text-sm font-semibold text-blue-400 uppercase tracking-widest mb-3">Why APIHUB?</p>
+            <h2 class="text-3xl md:text-4xl font-black text-white mb-4 leading-tight">
+              Your business runs on APIs.<br />
+              <span class="gradient-text">Who is keeping them in order?</span>
+            </h2>
+            <p class="text-slate-400 leading-relaxed mb-6">
+              What ungoverned APIs cost you in incidents, delivery speed, and documentation overhead — explained for
+              decision makers, not only engineers. Plus an honest map of where APIHUB fits next to Kong, Apigee,
+              SwaggerHub, Backstage, and friends.
+            </p>
+            <div class="flex flex-wrap gap-2 mb-6">
+              {['Business case', 'Without / with', 'Positioning map', 'Comparison by category'].map((t) => (
+                <span class="px-3 py-1 rounded-full border border-slate-700 bg-slate-900/70 text-xs text-slate-400">{t}</span>
+              ))}
+            </div>
+            <span class="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-400 group-hover:text-blue-300 transition-colors">
+              Read the business case and comparison
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+            </span>
+          </div>
+          <div class="rounded-2xl overflow-hidden border border-slate-800/80 shadow-2xl shadow-blue-500/10">
+            <img
+              src={withBase('images/why/positioning-quadrant.svg')}
+              alt="Positioning map: Qubership APIHUB is deep on contract governance and deliberately narrow on runtime"
+              class="w-full h-auto block bg-[#050813]"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </a>
     </div>
   </section>
 
