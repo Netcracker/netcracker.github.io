@@ -163,7 +163,7 @@ const currentPath = norm(Astro.url.pathname);
         </div>
 
         <!-- Desktop nav -->
-        <div class="hidden md:flex items-center gap-1">
+        <div class="hidden lg:flex items-center gap-1">
           {NAV_LINKS.map((link) => {
             const hrefNorm = norm(link.href);
             const isActive = !link.external && (
@@ -175,7 +175,7 @@ const currentPath = norm(Astro.url.pathname);
                 href={link.href}
                 target={link.external ? '_blank' : undefined}
                 rel={link.external ? 'noopener' : undefined}
-                class={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
+                class={`px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-150 ${
                   isActive
                     ? 'bg-blue-500/15 text-blue-400'
                     : 'text-slate-400 hover:text-white hover:bg-white/5'
@@ -201,7 +201,7 @@ const currentPath = norm(Astro.url.pathname);
         <a
           href={INSTALL_URL}
           target="_blank" rel="noopener"
-          class="btn-primary hidden md:flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-white flex-shrink-0"
+          class="btn-primary hidden lg:flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-white flex-shrink-0"
         >
           Get Started
           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
@@ -210,7 +210,7 @@ const currentPath = norm(Astro.url.pathname);
         <!-- Mobile menu button -->
         <button
           id="mobile-menu-btn"
-          class="md:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5"
+          class="lg:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5"
           aria-label="Menu"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
@@ -218,7 +218,7 @@ const currentPath = norm(Astro.url.pathname);
       </nav>
 
       <!-- Mobile nav -->
-      <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800/60 px-6 py-4 space-y-1">
+      <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-800/60 px-6 py-4 space-y-1">
         {NAV_LINKS.map((link) => (
           <a
             href={link.href}
@@ -267,6 +267,7 @@ const currentPath = norm(Astro.url.pathname);
             <ul class="space-y-2.5">
               {[
                 { label: 'Home', href: base },
+                { label: 'Why APIHUB', href: withBase('why/') },
                 { label: 'Use Cases', href: withBase('use-cases/') },
                 { label: 'Features', href: withBase('features/') },
                 { label: 'Capabilities', href: withBase('capabilities/') },

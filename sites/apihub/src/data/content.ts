@@ -15,6 +15,7 @@ export const WIKI_IMG_VS_API_MANAGEMENT = `${WIKI_RAW_BASE}/images/APIHUB_vs_API
 
 // ─── Navigation ──────────────────────────────────────────────────────────────
 export const NAV_LINKS = [
+  { label: 'Why APIHUB', href: withBase('why/') },
   { label: 'Use Cases', href: withBase('use-cases/') },
   { label: 'Features', href: withBase('features/') },
   { label: 'Capabilities', href: withBase('capabilities/') },
@@ -54,6 +55,242 @@ export const pillars = [
     color: 'indigo',
     href: withBase('capabilities/'),
   },
+];
+
+// ─── Why APIHUB: business case (/why) ────────────────────────────────────────
+export const whyRows = [
+  {
+    id: 'inventory',
+    number: '01',
+    title: 'Knowing what you have',
+    without:
+      'Nobody can say how many APIs exist, which version is live in production, or who depends on them. Knowledge sits in people\'s heads, spreadsheets, and wiki pages that stopped being true a year ago. When a key engineer leaves, the map leaves with them.',
+    with:
+      'One searchable catalog of every API contract — REST, GraphQL, event streams, database schemas, AI tool interfaces. Agents in your Kubernetes clusters discover what is actually deployed and keep the catalog current without manual updates.',
+    outcome:
+      'The organization owns its integration landscape, not individual employees. Audits, due diligence, and "what would break if we switch this off?" questions get answers in minutes.',
+  },
+  {
+    id: 'breaking-changes',
+    number: '02',
+    title: 'Changes that break other people\'s systems',
+    without:
+      'A developer renames a field or removes a parameter. Nothing in the process catches it. Weeks later a partner integration or the mobile app fails in production. The incident is found by customers, fixed over a weekend, and followed by a meeting about whose fault it was.',
+    with:
+      'Every new version is compared with the previous one automatically. Each change is classified as breaking, risky, deprecating, or safe — before release, in the CI pipeline, with the option to block the merge. Consumers see the full changelog of what will affect them.',
+    outcome:
+      'Fewer production incidents caused by integration breaks, predictable releases, and lower support and on-call cost. Backward compatibility becomes a policy, not a hope.',
+  },
+  {
+    id: 'documentation',
+    number: '03',
+    title: 'Documentation as a tax',
+    without:
+      'Documentation is written by hand, after the fact, in whatever format each team prefers. It is out of date the day it is published. Analysts and technical writers spend weeks per release re-describing what the code already says. Partners ask for "the latest doc" by email.',
+    with:
+      'Documentation is generated from the contract itself, versioned alongside it, and available with an interactive "try it" playground. There is one format, one place, one link per version. Markdown guides, examples, and diagrams live next to the spec.',
+    outcome:
+      'Documentation overhead drops from a recurring project to a by-product of publishing. Partner and customer integrations start faster and generate fewer support tickets.',
+  },
+  {
+    id: 'design-review',
+    number: '04',
+    title: 'Design review by meeting',
+    without:
+      'API standards exist on a wiki page nobody reads. Reviews happen in meetings and email threads, inconsistently, depending on who is available. Inconsistencies in naming, errors, and security schemes are discovered late, when fixing them means rework across several teams.',
+    with:
+      'Standards are encoded as rules — Spectral rulesets, optionally AI-assisted review — and executed automatically on every publish. Each version receives a quality score visible to every team. Architects review exceptions and disagreements instead of every file.',
+    outcome:
+      'Shorter approval cycles, consistent APIs across teams and vendors, and far less late-stage rework. Governance scales with automation, not with headcount.',
+  },
+  {
+    id: 'coordination',
+    number: '05',
+    title: 'Teams waiting on each other',
+    without:
+      '"Is it safe to upgrade?" is a question answered in chat, if at all. Consumers postpone upgrades, producers keep old versions alive indefinitely, and releases are preceded by integration freezes and manual regression rounds.',
+    with:
+      'Every consumer can see, per version, exactly what changed and what is deprecated, and can compare any two versions or revisions. Producers and consumers work in parallel with a shared, machine-checked contract.',
+    outcome:
+      'Faster time-to-market for features that span several teams, fewer coordination meetings, and a clean deprecation path instead of an ever-growing legacy surface.',
+  },
+  {
+    id: 'ai',
+    number: '06',
+    title: 'AI that knows your systems',
+    without:
+      'Developers ask AI assistants about internal APIs and get confident, wrong answers, because the assistant has never seen the real contracts. Building AI agents on top of your systems means hand-feeding them documentation that is already stale.',
+    with:
+      'APIHUB exposes the catalog through the Model Context Protocol (MCP), so IDE assistants and AI agents query the real, current contracts and their change history. Your own MCP tool surfaces can be published and versioned as contracts, too.',
+    outcome:
+      'AI adoption in engineering is grounded in facts, not guesses. Contract knowledge becomes an asset that both people and machines can use.',
+  },
+];
+
+export const whyOutcomes = [
+  { title: 'Fewer incidents', text: 'Breaking changes are caught before release, not by customers.', color: 'blue' },
+  { title: 'Faster delivery', text: 'Teams and partners integrate against a known, versioned contract instead of waiting for each other.', color: 'violet' },
+  { title: 'Lower overhead', text: 'Documentation, change review, and standards checks become automated by-products of publishing.', color: 'emerald' },
+  { title: 'Less key-person risk', text: 'The integration landscape belongs to the organization, discoverable by anyone.', color: 'cyan' },
+  { title: 'Audit readiness', text: 'Every version, change, and review decision has a record and an owner.', color: 'orange' },
+  { title: 'No license bill', text: 'Apache 2.0, self-hosted, data stays in your perimeter. Cost does not scale with headcount.', color: 'pink' },
+];
+
+// ─── Why APIHUB: positioning (/why) ──────────────────────────────────────────
+export const domainCoverage = [
+  { domain: 'API Portal', detail: 'Portal, doc viewer, playground, search', level: 'full' },
+  { domain: 'API Lifecycle', detail: 'Versions, revisions, diffs, deprecations, export', level: 'full' },
+  { domain: 'API Policy', detail: 'Spectral + AI linter, rulesets, quality score', level: 'strong' },
+  { domain: 'Analytics & Monitoring', detail: 'Bring your gateway or APM', level: 'none' },
+  { domain: 'API Gateway', detail: 'Runtime traffic — by design', level: 'none' },
+  { domain: 'Monetization', detail: '', level: 'none' },
+  { domain: 'Integration / low-code', detail: '', level: 'none' },
+];
+
+export const comparisonColumns = [
+  { key: 'apihub', label: 'Qubership APIHUB', sub: '', highlight: true },
+  { key: 'suites', label: 'Full APIM suites', sub: 'Kong Konnect, Apigee, Azure APIM, WSO2, Gravitee' },
+  { key: 'design', label: 'Design & docs platforms', sub: 'SwaggerHub / API Hub, Stoplight, Redocly, Bump.sh, Postman' },
+  { key: 'catalogs', label: 'Open-source catalogs', sub: 'Backstage API plugin, Apicurio Registry' },
+  { key: 'cli', label: 'CLI tools', sub: 'oasdiff, Spectral' },
+];
+
+export const comparisonRows: { capability: string; cells: Record<string, string> }[] = [
+  {
+    capability: 'Contract types in one catalog',
+    cells: {
+      apihub: 'REST, GraphQL, AsyncAPI 3, DDL (DB schemas), MCP tools, Markdown, Protobuf stubs',
+      suites: 'REST first; GraphQL / AsyncAPI vary by vendor',
+      design: 'REST first; AsyncAPI in some (Bump.sh, Redocly); GraphQL in some',
+      catalogs: 'Broad storage (Apicurio: Avro, Protobuf, JSON Schema too); rendering only in Backstage',
+      cli: 'OpenAPI only',
+    },
+  },
+  {
+    capability: 'Breaking-change classification',
+    cells: {
+      apihub: 'Yes — REST, GraphQL, AsyncAPI, DDL; breaking / risky / deprecated / safe; operation-level diff; Excel export',
+      suites: 'Basic or spec-lint only in most; not the core product',
+      design: 'Yes for REST (varies); AsyncAPI in Bump.sh',
+      catalogs: 'Apicurio: schema compatibility rules. Backstage: via oasdiff, OpenAPI only',
+      cli: 'oasdiff: deep, OpenAPI only',
+    },
+  },
+  {
+    capability: 'Standards enforcement (linting)',
+    cells: {
+      apihub: 'Spectral rulesets per API type, AI-assisted review, version quality score',
+      suites: 'Yes in higher tiers (Konnect, Apigee, Azure API Center)',
+      design: 'Yes (SwaggerHub standardization, Redocly scorecards, Stoplight style guides)',
+      catalogs: 'Backstage: no. Apicurio: validity rules',
+      cli: 'Spectral: yes, no history or dashboard',
+    },
+  },
+  {
+    capability: 'Discovers what is actually deployed (K8s)',
+    cells: {
+      apihub: 'Yes — agents in each cluster, snapshot, promote to catalog',
+      suites: 'Gateway sees traffic, not contracts; catalogs need registration',
+      design: 'No (Git / CI push model)',
+      catalogs: 'Backstage: entity YAML in repos. Apicurio: push',
+      cli: 'No',
+    },
+  },
+  {
+    capability: 'Developer portal with try-it',
+    cells: {
+      apihub: 'Yes — REST playground, GraphiQL, agent proxy for in-cluster calls',
+      suites: 'Yes (often a paid add-on, per portal)',
+      design: 'Yes — core strength, polished public-facing themes',
+      catalogs: 'Backstage: basic. Apicurio: minimal',
+      cli: 'No',
+    },
+  },
+  {
+    capability: 'SSO, RBAC, audit trail',
+    cells: {
+      apihub: 'Included — SAML, OIDC, LDAP, hierarchical roles, activity log',
+      suites: 'Enterprise tier',
+      design: 'Enterprise tier (often plus per-user SSO fee)',
+      catalogs: 'Backstage: yes. Apicurio: yes',
+      cli: 'n/a',
+    },
+  },
+  {
+    capability: 'AI / MCP',
+    cells: {
+      apihub: 'Built-in MCP server over the catalog, AI assistant, MCP contracts as a versioned type',
+      suites: 'AI gateway features; MCP support emerging',
+      design: 'MCP servers generated from docs (Bump.sh, Redocly)',
+      catalogs: 'No',
+      cli: 'oasdiff: hosted MCP',
+    },
+  },
+  {
+    capability: 'Runtime: gateway, traffic policy, analytics, monetization',
+    cells: {
+      apihub: 'No — by design',
+      suites: 'Yes — core product',
+      design: 'No',
+      catalogs: 'No',
+      cli: 'No',
+    },
+  },
+  {
+    capability: 'Visual designer, mocking, SDK generation',
+    cells: {
+      apihub: 'No — bring your editor; design tools are complementary',
+      suites: 'Partial',
+      design: 'Yes — core strength',
+      catalogs: 'Apicurio Studio (separate)',
+      cli: 'No',
+    },
+  },
+  {
+    capability: 'Deployment',
+    cells: {
+      apihub: 'Self-hosted: Helm or Docker Compose; PostgreSQL, optional S3',
+      suites: 'SaaS or hybrid; heavy self-hosted stacks',
+      design: 'SaaS (some on-prem in enterprise)',
+      catalogs: 'Self-hosted',
+      cli: 'Local / CI',
+    },
+  },
+  {
+    capability: 'License and cost',
+    cells: {
+      apihub: 'Apache 2.0, free, no per-seat fees',
+      suites: 'Enterprise contracts; per-gateway and/or per-request; SSO and audit gated',
+      design: 'Per-seat subscriptions (roughly USD 10–90 per user per month); SSO extra',
+      catalogs: 'Apache 2.0, free',
+      cli: 'Apache 2.0, free (oasdiff Pro paid)',
+    },
+  },
+  {
+    capability: 'Community and vendor scale',
+    cells: {
+      apihub: 'Netcracker-backed, 27+ repos, releases every 4–6 weeks; smaller community',
+      suites: 'Large vendors, large ecosystems',
+      design: 'Established vendors',
+      catalogs: 'Large (Backstage is CNCF) / Red Hat',
+      cli: 'Active OSS',
+    },
+  },
+];
+
+export const fitFor = [
+  'You run many services (typically on Kubernetes) and need one source of truth for contracts across REST, GraphQL, events, and database schemas.',
+  'You want breaking-change detection and standards checks in CI without a per-seat bill for every developer who reads the docs.',
+  'Specifications must stay inside your own perimeter — regulated industries, on-prem, sovereign clouds.',
+  'You already have a gateway (or several) and are missing the governance layer on top.',
+  'You are building AI-assisted engineering and want assistants to work from real contracts.',
+];
+
+export const notFitFor = [
+  'You need runtime API management — traffic routing, rate limiting, monetization, consumer key management. Use a gateway; APIHUB complements it.',
+  'You want a visual design-first editor with mocking and SDK generation as the primary workflow (Stoplight, SwaggerHub, Apicurio Studio are built for that).',
+  'A public, branded developer portal for external customers is your main deliverable (Redocly, Bump.sh, ReadMe-class products are stronger here).',
+  'You want a fully managed SaaS with vendor SLAs — APIHUB is self-hosted and community-supported.',
 ];
 
 // ─── Section nav cards (shown on home) ───────────────────────────────────────
