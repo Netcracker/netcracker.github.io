@@ -27,7 +27,7 @@ export const NAV_LINKS = [
 // ─── Stats ───────────────────────────────────────────────────────────────────
 export const stats = [
   { value: '27+', label: 'Open Source Repositories' },
-  { value: 'v2.12.0', label: 'Latest Release' },
+  { value: 'v2.14.0', label: 'Latest Release' },
   { value: 'Contracts', label: 'API Types + DDLAPI + MCP' },
   { value: 'MCP', label: 'Server + Catalog Contracts' },
 ];
@@ -169,7 +169,7 @@ export const comparisonRows: { capability: string; cells: Record<string, string>
   {
     capability: 'Breaking-change classification',
     cells: {
-      apihub: 'Yes — REST, GraphQL, AsyncAPI, DDL; breaking / risky / deprecated / safe; operation-level diff; Excel export',
+      apihub: 'Yes — REST, GraphQL, AsyncAPI, DDL (table schema Diff View); breaking / risky / deprecated / safe; operation-level diff; Excel export including MCP',
       suites: 'Basic or spec-lint only in most; not the core product',
       design: 'Yes for REST (varies); AsyncAPI in Bump.sh',
       catalogs: 'Apicurio: schema compatibility rules. Backstage: via oasdiff, OpenAPI only',
@@ -189,7 +189,7 @@ export const comparisonRows: { capability: string; cells: Record<string, string>
   {
     capability: 'Discovers what is actually deployed (K8s)',
     cells: {
-      apihub: 'Yes — agents in each cluster, snapshot, promote to catalog',
+      apihub: 'Yes — agents in each cluster, snapshot, promote to catalog; optional per-service discovery and PAT auth',
       suites: 'Gateway sees traffic, not contracts; catalogs need registration',
       design: 'No (Git / CI push model)',
       catalogs: 'Backstage: entity YAML in repos. Apicurio: push',
@@ -299,7 +299,7 @@ export const sectionCards = [
     href: withBase('use-cases/'),
     icon: '💡',
     title: 'Use Cases',
-    description: 'See how API developers, DevOps, governance leads, and AI teams use APIHUB in real workflows.',
+    description: 'See how API developers, DevOps, governance leads, data architects, and AI teams use APIHUB in real workflows.',
     color: 'blue',
   },
   {
@@ -320,7 +320,7 @@ export const sectionCards = [
     href: withBase('releases/'),
     icon: '🚀',
     title: 'Releases',
-    description: 'Actively developed with releases every 4–6 weeks. See the full changelog from v2.5.x to v2.12.0.',
+    description: 'Actively developed with releases every 4–6 weeks. See the full changelog from v2.5.x to v2.14.0.',
     color: 'emerald',
   },
   {
@@ -341,10 +341,10 @@ export const features = [
     title: 'Find Any API in Seconds',
     description: 'Powerful global search across all operations, documents, and packages. Navigate the full hierarchy — workspace → group → package → version — with rich filters.',
     bullets: [
-      'Search across REST operations, GraphQL queries, and AsyncAPI channels',
-      'Browse DDLAPI and MCP contracts in the same package hierarchy',
+      'Search across REST operations, GraphQL queries, AsyncAPI channels, DDL tables, and MCP tools',
+      'Browse DDLAPI and MCP contracts in the same package hierarchy and on dashboards',
       'Deep-link directly into the doc view or package summary',
-      'Filter by audience, tags, API kind, and deprecation status',
+      'Filter by audience, tags, API kind, deprecation, and multiple version statuses',
     ],
     image: null,
     image2: null,
@@ -356,12 +356,12 @@ export const features = [
     tab: 'Breaking Changes',
     icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" /></svg>`,
     title: 'Detect Breaking Changes Automatically',
-    description: 'Version-to-version and operation-level diffs with automated classification. Compare versions, revisions, or REST path groups — including AsyncAPI and DDLAPI — with export to Excel for compliance.',
+    description: 'Version-to-version and operation-level diffs with automated classification. Compare versions, revisions, or REST path groups — including AsyncAPI and DDLAPI table schemas — with export to Excel for compliance.',
     bullets: [
       'Breaking / Semi-Breaking / Deprecated / Non-Breaking / Annotation severity',
-      'Compare versions or revisions across REST, GraphQL, AsyncAPI, and DDLAPI',
-      'Path-prefix group comparison for domain-scoped analysis',
-      'Export change lists to Excel for audit and compliance workflows',
+      'Compare versions or revisions across REST, GraphQL, AsyncAPI, and DDLAPI (table schema Diff View)',
+      'GraphQL no-BWC and experimental apiKind use the same change rules as REST',
+      'Export REST, GraphQL, AsyncAPI, DDL, and MCP change lists to Excel',
     ],
     image: withBase('images/feature-breaking-changes.png'),
     image2: 'https://github.com/user-attachments/assets/34f7d6f6-ccd7-4e28-a88a-6cc5effc9f83',
@@ -393,8 +393,8 @@ export const features = [
     description: 'Deploy lightweight agents to remote Kubernetes clusters. Agents automatically discover REST, GraphQL, and AsyncAPI services and promote specs into the central catalog.',
     bullets: [
       'Pluggable discovery runners: REST, GraphQL, AsyncAPI, JSON Schema',
-      'Namespace-scoped discovery with security boundary enforcement',
-      'Heartbeat-based health monitoring with automatic snapshot TTL cleanup',
+      'Limit a run to specified services, or keep namespace-wide discovery',
+      'PAT authentication for agents; heartbeat health checks with snapshot TTL cleanup',
       'One-click promotion from agent snapshot to the governed portal catalog',
     ],
     image: withBase('images/feature-k8s-discovery.png'),
@@ -441,12 +441,12 @@ export const features = [
     tab: 'Contracts',
     icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" /></svg>`,
     title: 'Beyond API Types: Catalog Contracts',
-    description: 'APIHUB is no longer limited to operation-centric API types. Publish DDLAPI database schemas and MCP tool/resource/prompt documents as first-class contracts in the same package versions — with dedicated Portal Contracts UX.',
+    description: 'Publish DDLAPI database schemas and MCP tool/resource/prompt documents as first-class contracts in the same package versions. The Portal covers search, dashboards, changelog, and export — not only browse.',
     bullets: [
-      'DDLAPI: normalize, diff, and render database schemas (table viewer)',
-      'MCP contracts: version init, tools, resources, and prompts in the catalog',
-      'Shared build pipeline via ddlBuilder / mcpBuilder in api-processor',
-      'MCP server for IDEs remains separate — it queries the catalog, it is not the contract type',
+      'DDLAPI: table viewer, changelog, dashboards, and side-by-side schema Diff View',
+      'MCP contracts: configure endpoints before publish, then search, compare, and export',
+      'Shared build pipeline via ddlBuilder / mcpBuilder; document apiKind persisted on publish',
+      'MCP server for IDEs remains separate: it queries the catalog; it is not the contract type',
     ],
     image: withBase('images/feature-ai-mcp.png'),
     image2: null,
@@ -469,7 +469,7 @@ export const scenarios = [
     persona: 'DevOps / CI Platform',
     icon: '⚙️',
     title: 'Block breaking changes in pull requests',
-    steps: ['PR opened', 'CI triggers APIHUB', 'Diff computed', 'Breaking? Fail', 'Safe? Merge'],
+    steps: ['PR opened', 'CI triggers APIHUB', 'Diff computed', 'Previous version status checked', 'Breaking? Fail', 'Safe? Merge'],
     value: 'Zero breaking changes reach production. Every release is safe by default.',
     color: 'violet',
   },
@@ -493,7 +493,7 @@ export const scenarios = [
     persona: 'Platform Engineer',
     icon: '☸️',
     title: 'Always-current API inventory from K8s',
-    steps: ['Deploy agent', 'Auto-discover services', 'Snapshot specs', 'Review in UI', 'Promote to catalog'],
+    steps: ['Deploy agent', 'Scope services or namespaces', 'Snapshot specs', 'Review in UI', 'Promote to catalog'],
     value: 'Catalog always reflects what\'s actually deployed. No stale docs, no manual updates.',
     color: 'cyan',
   },
@@ -501,7 +501,7 @@ export const scenarios = [
     persona: 'Data / Platform Architect',
     icon: '🗄️',
     title: 'Version database schemas next to APIs',
-    steps: ['Publish DDLAPI', 'Review table viewer', 'Diff schema versions', 'Share with teams'],
+    steps: ['Publish DDLAPI', 'Review table viewer', 'Diff table schemas', 'Export changelog'],
     value: 'DB contracts live in the same catalog as service APIs — one release story for app and data.',
     color: 'indigo',
   },
@@ -518,9 +518,29 @@ export const scenarios = [
 // ─── Releases (legacy fallback; Releases page uses content/releases/*.md) ─────
 export const releases = [
   {
+    version: 'v2.14.0',
+    date: 'August 28, 2026',
+    latest: true,
+    highlights: [
+      'MCP and DDL advanced Portal scenarios',
+      'DDL table schema Diff View',
+      'Multi-status version filter; scoped agent discovery',
+    ],
+  },
+  {
+    version: 'v2.13.0',
+    date: 'July 30, 2026',
+    latest: false,
+    highlights: [
+      'GraphQL no-BWC / experimental API Kind',
+      'PAT authentication for Kubernetes agents',
+      'Admin Builds API; config.yaml for linter and agents-backend',
+    ],
+  },
+  {
     version: 'v2.12.0',
     date: 'July 15, 2026',
-    latest: true,
+    latest: false,
     highlights: [
       'MCP & DDL catalog contracts in UI',
       'DDL table viewer and AsyncAPI Diff View',
@@ -593,7 +613,7 @@ export const deployOptions = [
   {
     icon: `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z" /></svg>`,
     title: 'Kubernetes / Helm',
-    description: 'Production-grade Kubernetes deployment with Helm charts. Full configurability via values.yaml — RBAC, resource limits, S3, SSO, monitoring, and more.',
+    description: 'Production-grade Kubernetes deployment with Helm charts. Full configurability via values.yaml — RBAC, resource limits, S3, SSO, monitoring, and API keys mounted as files.',
     badge: 'Production ready',
     cta: 'View Helm chart',
     href: 'https://github.com/Netcracker/qubership-apihub/tree/main/helm-templates',

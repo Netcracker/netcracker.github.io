@@ -9,12 +9,12 @@
     "line2": "API Hub",
     "line3": "for Modern Engineering",
     "subtitle": "A single point of truth for versioned API and non-API contracts. Discover, compare, validate, and govern OpenAPI, GraphQL, AsyncAPI, DDLAPI, and MCP in one catalog.",
-    "versionBadge": "v2.12.0",
-    "versionBadgeText": "Released — MCP & DDL Contracts + AsyncAPI Diff View"
+    "versionBadge": "v2.14.0",
+    "versionBadgeText": "Released — DDL Schema Diff + MCP Advanced Catalog"
   },
   "stats": [
     { "value": "27+", "label": "Open Source Repositories" },
-    { "value": "v2.12.0", "label": "Latest Release" },
+    { "value": "v2.14.0", "label": "Latest Release" },
     { "value": "Contracts", "label": "API Types + DDLAPI + MCP" },
     { "value": "MCP", "label": "Server + Catalog Contracts" }
   ]
