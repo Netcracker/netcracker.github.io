@@ -78,6 +78,7 @@ Everything is in the repository — no CMS. Typical locations:
 | Links, stats, feature carousel data, wiki image URLs | `src/data/content.ts` |
 | Page copy and layout | `src/pages/*.astro` |
 | "Why APIHUB" business case, positioning, and comparison-by-category data | `src/data/content.ts` (`whyRows`, `whyOutcomes`, `comparisonRows`, …) and `public/images/why/*.svg` |
+| Technology radar blips and ring copy | `src/data/radar.ts`, page `src/pages/radar.astro`, preview `public/images/radar/preview.svg` |
 | Release timeline | `src/content/releases/*.md` |
 | Use-case personas | `src/content/use-cases/*.md` |
 | New static assets | `public/images/` (reference as `/images/...` in pages) |

@@ -19,6 +19,7 @@ export const NAV_LINKS = [
   { label: 'Use Cases', href: withBase('use-cases/') },
   { label: 'Features', href: withBase('features/') },
   { label: 'Capabilities', href: withBase('capabilities/') },
+  { label: 'Radar', href: withBase('radar/') },
   { label: 'Releases', href: withBase('releases/') },
   { label: 'Deploy', href: withBase('deploy/') },
   { label: 'Docs', href: DOCS_URL, external: true },
@@ -315,6 +316,13 @@ export const sectionCards = [
     title: 'All Capabilities',
     description: 'Complete feature matrix — API types, contract types (DDL & MCP), security, AI, export, and more.',
     color: 'indigo',
+  },
+  {
+    href: withBase('radar/'),
+    icon: '📡',
+    title: 'Technology Radar',
+    description: 'What we run and how we build it: Adopt, Trial, Assess, Hold across product runtime and engineering practice.',
+    color: 'emerald',
   },
   {
     href: withBase('releases/'),
