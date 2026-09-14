@@ -274,6 +274,7 @@ const currentPath = norm(Astro.url.pathname);
                 { label: 'Radar', href: withBase('radar/') },
                 { label: 'Releases', href: withBase('releases/') },
                 { label: 'Deploy', href: withBase('deploy/') },
+                { label: 'Docs', href: withBase('docs/') },
               ].map((l) => (
                 <li><a href={l.href} class="text-sm text-slate-500 hover:text-white transition-colors">{l.label}</a></li>
               ))}

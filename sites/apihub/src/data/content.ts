@@ -22,7 +22,8 @@ export const NAV_LINKS = [
   { label: 'Radar', href: withBase('radar/') },
   { label: 'Releases', href: withBase('releases/') },
   { label: 'Deploy', href: withBase('deploy/') },
-  { label: 'Docs', href: DOCS_URL, external: true },
+  { label: 'Docs', href: withBase('docs/') },
+  { label: 'Guides', href: DOCS_URL, external: true },
 ];
 
 // ─── Stats ───────────────────────────────────────────────────────────────────
@@ -337,6 +338,13 @@ export const sectionCards = [
     title: 'Deploy',
     description: 'Docker Compose, Helm chart, or build from source. Architecture overview included.',
     color: 'orange',
+  },
+  {
+    href: withBase('docs/architecture/'),
+    icon: '🏛️',
+    title: 'Architecture',
+    description: 'The C4 model from context down to code, the three runtime flows, and 60 sub-capabilities mapped onto the services that implement them.',
+    color: 'blue',
   },
 ];
 
