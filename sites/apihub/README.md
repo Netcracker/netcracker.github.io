@@ -52,15 +52,27 @@ docker compose --profile dev up dev-server
 ```
 qubership-apihub-landing/
 ├── src/
-│   ├── data/content.ts          ← Site URLs, nav, shared copy (stats, features list, etc.)
-│   ├── layouts/Layout.astro     ← Base layout, header, footer, global styles
+│   ├── data/
+│   │   ├── content.ts           ← Site URLs, nav, shared copy (stats, features list, etc.)
+│   │   ├── radar.ts             ← Technology radar blips and ring copy
+│   │   ├── docs.ts              ← /docs sub-site structure (sidebar, hub cards, prev/next)
+│   │   ├── architecture.ts      ← C4 narrative data + typed view of the capability model
+│   │   └── capability-model.json ← Copy of the architecture deck's model (see below)
+│   ├── layouts/
+│   │   ├── Layout.astro         ← Base layout, header, footer, lightbox, global styles
+│   │   └── DocsLayout.astro     ← /docs shell: sidebar, breadcrumbs, page ToC, prev/next
+│   ├── components/DocFigure.astro ← Captioned, click-to-zoom diagram
 │   ├── pages/                   ← One `.astro` file per route (static HTML)
+│   │   └── docs/                ← Documentation sub-site
+│   │       ├── index.astro      ← Hub: architecture pages + links to the repository guides
+│   │       └── architecture/    ← Overview, C4 model, runtime flows, capability map
 │   └── content/                 ← Astro content collections (Markdown)
 │       ├── config.ts
 │       ├── releases/            ← Release notes for /releases
 │       └── use-cases/           ← Persona cards for /use-cases
 ├── public/
 │   ├── images/                  ← Static images (favicon, hero, feature screenshots, …)
+│   │   └── architecture/        ← Hand-authored dark-theme architecture diagrams (SVG)
 │   └── favicon.svg
 ├── Dockerfile
 ├── docker-compose.yml
@@ -81,9 +93,53 @@ Everything is in the repository — no CMS. Typical locations:
 | Technology radar blips and ring copy | `src/data/radar.ts`, page `src/pages/radar.astro`, preview `public/images/radar/preview.svg` |
 | Release timeline | `src/content/releases/*.md` |
 | Use-case personas | `src/content/use-cases/*.md` |
+| Documentation sidebar, hub cards, page order | `src/data/docs.ts` |
+| Architecture narrative (C4 levels, components, flows, deployment, ArchiMate) | `src/data/architecture.ts` |
+| Architecture diagrams | `public/images/architecture/*.svg` |
 | New static assets | `public/images/` (reference as `/images/...` in pages) |
 
 After changes: `npm run build` (or rebuild the Docker image).
+
+---
+
+## Documentation Sub-Site (`/docs`)
+
+`/docs` is a small documentation sub-site with its own sidebar layout, intended to grow into the home for
+user documentation. It currently publishes the platform architecture:
+
+| Page | Contents |
+|------|----------|
+| [`/docs/`](src/pages/docs/index.astro) | Hub — architecture pages plus links to the installation, user and administrator guides |
+| [`/docs/architecture/`](src/pages/docs/architecture/index.astro) | Overview — the two models, the four levels of C4, the container roster |
+| [`/docs/architecture/c4/`](src/pages/docs/architecture/c4.astro) | Context, containers, components, code, and the Kubernetes deployment view |
+| [`/docs/architecture/flows/`](src/pages/docs/architecture/flows.astro) | Three dynamic views: publishing, runtime discovery, AI access over MCP |
+| [`/docs/architecture/capability-map/`](src/pages/docs/architecture/capability-map.astro) | Nine capabilities, sixty sub-capabilities, technology and maturity overlays, ArchiMate layers |
+
+### Refreshing the capability data
+
+`src/data/capability-model.json` is a verbatim copy of `diagrams/arch-deck-2026-09/model.json` in the
+APIHUB workspace, which is itself exported from `diagrams/capability-2026-09/model.py`. The capability
+map on this site, the slide deck, and the ArchiMate model therefore share one source. To refresh, copy the
+JSON over and rebuild — do not hand-edit it:
+
+```bash
+cp ../../../diagrams/arch-deck-2026-09/model.json src/data/capability-model.json
+npm run build
+```
+
+Counts shown on the page (nine capabilities, sixty sub-capabilities, per-container weights, maturity
+totals) are derived at build time in `src/data/architecture.ts`, so they update automatically.
+
+### Adding a documentation page
+
+1. Add an entry to the relevant section of `docsNav` in `src/data/docs.ts`.
+2. Create the matching page under `src/pages/docs/…` using `DocsLayout`.
+
+The sidebar, the hub card grid, and the previous/next links all read from `docsNav`, so nothing else
+needs changing.
+
+> **Astro gotcha:** the compiler hoists frontmatter lines that begin with the `export` keyword. If you
+> need `export` as an object key in a component's frontmatter, quote it (`'export': …`).
 
 ---
 
