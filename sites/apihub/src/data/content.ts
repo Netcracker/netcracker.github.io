@@ -29,7 +29,7 @@ export const NAV_LINKS = [
 // ─── Stats ───────────────────────────────────────────────────────────────────
 export const stats = [
   { value: '27+', label: 'Open Source Repositories' },
-  { value: 'v2.14.0', label: 'Latest Release' },
+  { value: 'v2.15.0', label: 'Latest Release' },
   { value: 'Contracts', label: 'API Types + DDLAPI + MCP' },
   { value: 'MCP', label: 'Server + Catalog Contracts' },
 ];
@@ -329,7 +329,7 @@ export const sectionCards = [
     href: withBase('releases/'),
     icon: '🚀',
     title: 'Releases',
-    description: 'Actively developed with releases every 4–6 weeks. See the full changelog from v2.5.x to v2.14.0.',
+    description: 'Actively developed with releases every 4–6 weeks. See the full changelog from v2.5.x to v2.15.0.',
     color: 'emerald',
   },
   {
@@ -534,9 +534,19 @@ export const scenarios = [
 // ─── Releases (legacy fallback; Releases page uses content/releases/*.md) ─────
 export const releases = [
   {
+    version: 'v2.15.0',
+    date: 'September 24, 2026',
+    latest: true,
+    highlights: [
+      'Global search authorization; MCP/DDL in MCP tools',
+      'Archived version status removed; AI linter optional',
+      'OpenTelemetry metrics; migration UX counters',
+    ],
+  },
+  {
     version: 'v2.14.0',
     date: 'August 28, 2026',
-    latest: true,
+    latest: false,
     highlights: [
       'MCP and DDL advanced Portal scenarios',
       'DDL table schema Diff View',
