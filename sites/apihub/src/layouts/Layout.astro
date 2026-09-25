@@ -145,25 +145,25 @@ const currentPath = norm(Astro.url.pathname);
       class="sticky top-0 z-50 border-b border-slate-800/60 backdrop-blur-xl"
       style="background: rgba(5,8,19,0.88);"
     >
-      <nav class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
-        <div class="flex items-center gap-4 min-w-0">
+      <nav class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center gap-3">
+        <!-- Brand (never shrink under nav links) -->
+        <div class="flex items-center gap-3 flex-shrink-0">
           <a
             href={NETCRACKER_PAGES_ROOT}
-            class="hidden sm:inline text-xs font-medium text-slate-500 hover:text-white whitespace-nowrap transition-colors"
+            class="hidden 2xl:inline text-xs font-medium text-slate-500 hover:text-white whitespace-nowrap transition-colors"
           >
             All products
           </a>
-          <!-- Logo -->
-          <a href={base} class="flex items-center gap-3 flex-shrink-0 min-w-0">
+          <a href={base} class="flex items-center gap-2.5">
             <img src={withBase('images/logo.png')} alt="APIHUB Logo" class="h-8 w-auto" />
-            <span class="font-bold text-lg tracking-tight text-white truncate">
-              Qubership <span class="gradient-text">APIHUB</span>
+            <span class="font-bold text-base xl:text-lg tracking-tight text-white whitespace-nowrap">
+              <span class="hidden sm:inline">Qubership </span><span class="gradient-text">APIHUB</span>
             </span>
           </a>
         </div>
 
-        <!-- Desktop nav -->
-        <div class="hidden lg:flex items-center gap-1">
+        <!-- Desktop nav: xl+ so Docs/Radar/Capabilities fit without covering the logo -->
+        <div class="hidden xl:flex flex-1 items-center justify-end gap-0.5 min-w-0">
           {NAV_LINKS.map((link) => {
             const hrefNorm = norm(link.href);
             const isActive = !link.external && (
@@ -175,7 +175,7 @@ const currentPath = norm(Astro.url.pathname);
                 href={link.href}
                 target={link.external ? '_blank' : undefined}
                 rel={link.external ? 'noopener' : undefined}
-                class={`px-3 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-150 ${
+                class={`px-2 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-150 ${
                   isActive
                     ? 'bg-blue-500/15 text-blue-400'
                     : 'text-slate-400 hover:text-white hover:bg-white/5'
@@ -191,7 +191,7 @@ const currentPath = norm(Astro.url.pathname);
           <a
             href={GITHUB_URL}
             target="_blank" rel="noopener"
-            class="px-3 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-150 flex items-center gap-1.5"
+            class="px-2 py-2 rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-white/5 transition-all duration-150 flex items-center gap-1.5"
           >
             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
             GitHub
@@ -201,24 +201,24 @@ const currentPath = norm(Astro.url.pathname);
         <a
           href={INSTALL_URL}
           target="_blank" rel="noopener"
-          class="btn-primary hidden lg:flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-white flex-shrink-0"
+          class="btn-primary hidden xl:flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-semibold text-white flex-shrink-0 ml-auto xl:ml-0"
         >
           Get Started
           <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
         </a>
 
-        <!-- Mobile menu button -->
+        <!-- Compact menu below xl (extra sections no longer collide with the logo) -->
         <button
           id="mobile-menu-btn"
-          class="lg:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5"
+          class="xl:hidden ml-auto p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5"
           aria-label="Menu"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
         </button>
       </nav>
 
-      <!-- Mobile nav -->
-      <div id="mobile-menu" class="hidden lg:hidden border-t border-slate-800/60 px-6 py-4 space-y-1">
+      <!-- Compact nav -->
+      <div id="mobile-menu" class="hidden xl:hidden border-t border-slate-800/60 px-6 py-4 space-y-1">
         {NAV_LINKS.map((link) => (
           <a
             href={link.href}
