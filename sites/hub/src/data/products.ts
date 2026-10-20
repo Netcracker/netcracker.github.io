@@ -9,7 +9,7 @@ export interface ProductDomain {
   description: string;
   topicsNote: string;
   status: ProductStatus;
-  /** Relative path on this Pages site, e.g. /apihub/ */
+  /** Landing URL: a path on this Pages site (e.g. /qip/) or an absolute URL */
   landingHref?: string;
   /** GitHub topic for org search */
   githubTopic: string;
@@ -31,7 +31,7 @@ export const productDomains: ProductDomain[] = [
       'Catalog, browse, compare, lint and render API specifications across formats. Single place for API governance and portal experiences.',
     topicsNote: 'qubership-apihub, apihub, frontend',
     status: 'live',
-    landingHref: '/apihub/',
+    landingHref: 'https://netcracker.github.io/qubership-apihub/landing/',
     githubTopic: 'qubership-apihub',
   },
   {
