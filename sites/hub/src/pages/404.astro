@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Page not found — Netcracker Open Source">
+  <script is:inline>
+    // The APIHUB landing moved to the qubership-apihub monorepo. Old /apihub/* paths without a static
+    // redirect page are forwarded to the same path under the new home; query and hash are kept.
+    (function () {
+      var path = location.pathname;
+      if (path === '/apihub' || path.indexOf('/apihub/') === 0) {
+        var rest = path.slice('/apihub'.length).replace(/^\/+/, '');
+        location.replace(
+          'https://netcracker.github.io/qubership-apihub/landing/' + rest + location.search + location.hash,
+        );
+      }
+    })();
+  </script>
+  <main class="px-6 py-24">
+    <div class="max-w-xl mx-auto text-center">
+      <h1 class="text-4xl font-extrabold text-white mb-4">Page not found</h1>
+      <p class="text-slate-400 mb-8">This page does not exist on netcracker.github.io.</p>
+      <a href="/" class="text-blue-400 hover:text-white">Back to the home page</a>
+    </div>
+  </main>
+</Layout>
