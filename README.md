@@ -1,13 +1,18 @@
 # netcracker.github.io
 
-Monorepo for the [Netcracker organization GitHub Pages](https://netcracker.github.io/) site: a product hub at the root and per-product static landings under subpaths (for example `/apihub/`).
+Monorepo for the [Netcracker organization GitHub Pages](https://netcracker.github.io/) site: a product hub at the root and per-product static landings under subpaths (for example `/qip/`).
+
+The Qubership APIHUB landing moved to the
+[`Netcracker/qubership-apihub`](https://github.com/Netcracker/qubership-apihub/tree/develop/sites/landing) monorepo
+(`sites/landing/`). It is published at <https://netcracker.github.io/qubership-apihub/landing/>.
+The old `/apihub/*` URLs redirect there: the hub serves one redirect page per old route under
+`sites/hub/public/apihub/`, and `sites/hub/src/pages/404.astro` forwards any other `/apihub/*` path.
 
 ## Layout
 
 | Path | Description |
 |------|-------------|
 | `sites/hub/` | Root landing (Astro) — domain cards and navigation |
-| `sites/apihub/` | Qubership APIHUB product landing (Astro), built with `base: /apihub` |
 | `sites/qip/` | Qubership Integration Platform landing (Astro), built with `base: /qip` |
 
 ## Local development
@@ -25,7 +30,7 @@ cd sites/qip && npm install && npm run dev
 
 ## Production build (same as CI)
 
-From each site directory: `npm ci && npm run build`. CI merges `sites/hub/dist/` into the publish root, `sites/apihub/dist/` into `apihub/`, and `sites/qip/dist/` into `qip/`, adds `.nojekyll`, and deploys via GitHub Actions.
+From each site directory: `npm ci && npm run build`. CI merges `sites/hub/dist/` into the publish root and `sites/qip/dist/` into `qip/`, adds `.nojekyll`, and deploys via GitHub Actions.
 
 ## GitHub Pages setup (required)
 
@@ -41,4 +46,4 @@ First-time deploy: you may need to allow the `github-pages` environment once (**
 
 ## License
 
-See individual sites; APIHUB landing is Apache 2.0 aligned with [qubership-apihub](https://github.com/Netcracker/qubership-apihub).
+See individual sites and the [LICENSE](LICENSE) file.

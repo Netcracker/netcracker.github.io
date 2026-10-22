@@ -25,17 +25,10 @@ jobs:
           cache: npm
           cache-dependency-path: |
             sites/hub/package-lock.json
-            sites/apihub/package-lock.json
             sites/qip/package-lock.json
 
       - name: Install and build hub
         working-directory: sites/hub
-        run: |
-          npm ci
-          npm run build
-
-      - name: Install and build apihub
-        working-directory: sites/apihub
         run: |
           npm ci
           npm run build
@@ -50,8 +43,6 @@ jobs:
         run: |
           mkdir -p _site
           cp -r sites/hub/dist/* _site/
-          mkdir -p _site/apihub
-          cp -r sites/apihub/dist/* _site/apihub/
           mkdir -p _site/qip
           cp -r sites/qip/dist/* _site/qip/
           touch _site/.nojekyll
